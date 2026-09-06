@@ -75,7 +75,7 @@
   /* ---------- layout */
   --pl-container: 1200px;
   --pl-gutter:    30px;
-  --pl-section-y: 200px;  /* space above every section on desktop */
+  --pl-section-y: 130px;  /* space above every section on desktop */
 
   /* ---------- motion */
   --pl-ease:   cubic-bezier(.2, .8, .2, 1);
@@ -201,6 +201,24 @@ img { max-width: 100%; }
   font-size: 18px; color: var(--pl-ink); background: #fff;
 }
 .pl-btn--ghost:hover { filter: none; background: var(--pl-surface); }
+
+/* text link that acts as a call to action ("Learn more →").
+   Padding + matching negative margin: the target grows, the text stays put. */
+.pl-link-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; margin: -8px -14px;
+  border-radius: var(--pl-r-pill);
+  font-size: var(--pl-small); font-weight: 600; color: var(--pl-accent);
+  transition: background var(--pl-fast), color var(--pl-fast);
+}
+.pl-link-cta:hover { background: rgba(246, 76, 38, .1); color: var(--pl-accent); }
+
+/* round tick badge — the glyph is an SVG, not a text character */
+.pl-tick {
+  width: 18px; height: 18px; border-radius: 50%; flex: 0 0 auto;
+  background: var(--pl-ink); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+}
 
 /* row that holds the hero pair */
 .pl-btn-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
@@ -372,7 +390,7 @@ img { max-width: 100%; }
    responsive — the two breakpoints the site uses, and nothing in between
    ========================================================================== */
 @media (max-width: 1024px) {
-  .pl-section { padding-top: 110px; }
+  .pl-section { padding-top: 90px; }
   .pl-hero { min-height: 0; padding-top: 130px; }
 
   .pl-nav__links { display: none; }
