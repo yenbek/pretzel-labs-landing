@@ -193,12 +193,17 @@ img { max-width: 100%; }
               0 4px 16px rgba(29, 29, 29, .5);
 }
 
-/* ghost — plain white pill on photography */
+/* ghost — plain white pill on photography.
+   Same 48px pill as the primary: wrap BOTH in .pl-btn-halo so the two coloured
+   shapes match. A bare ghost next to a haloed primary reads as different heights. */
 .pl-btn--ghost {
-  height: 59px; padding: 18px 44px;
+  height: 48px; padding: 0 40px; justify-content: center;
   font-size: 18px; color: var(--pl-ink); background: #fff;
 }
 .pl-btn--ghost:hover { filter: none; background: var(--pl-surface); }
+
+/* row that holds the hero pair */
+.pl-btn-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
 /* the round arrow that rides inside primary/dark buttons */
 .pl-btn__arrow {
@@ -383,6 +388,12 @@ img { max-width: 100%; }
   .pl-navmenu[data-open] { visibility: visible; opacity: 1; transform: none; pointer-events: auto; }
 
   .pl-head img { width: 120px; height: 120px; }
+
+  /* Hero buttons: size them to each other, not to their labels — otherwise the
+     longer secondary ends up almost twice as wide as the primary. */
+  .pl-btn-row { width: 100%; flex-direction: column; align-items: stretch; }
+  .pl-btn-row > .pl-btn-halo, .pl-btn-row > .pl-btn { width: 100%; }
+  .pl-btn-row .pl-btn { width: 100%; justify-content: center; padding-left: 20px; padding-right: 20px; }
   .pl-h1 { font-size: clamp(40px, 11vw, 72px); }
   .pl-h2 { font-size: clamp(30px, 8vw, 44px); }
   .pl-h3 { font-size: clamp(34px, 9vw, 56px); }

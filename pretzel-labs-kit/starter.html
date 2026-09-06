@@ -50,11 +50,14 @@
     <h1 class="pl-h1">A headline with <em>one italic</em> phrase.</h1>
     <p class="pl-lead">One or two sentences. Say the thing plainly — the page does the
       decoration, the copy does not.</p>
-    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+    <!-- Both buttons wrapped in .pl-btn-halo so the two coloured pills are the same height. -->
+    <div class="pl-btn-row">
       <span class="pl-btn-halo">
         <a class="pl-btn pl-btn--primary" href="/demo">Get a demo <span class="pl-btn__arrow">&rarr;</span></a>
       </span>
-      <a class="pl-btn pl-btn--ghost" href="/tour">Watch a 4-minute walkthrough</a>
+      <span class="pl-btn-halo">
+        <a class="pl-btn pl-btn--ghost" href="/tour">Watch a 4-min tour</a>
+      </span>
     </div>
   </div>
   <!-- optional hero art: a pretzel render sitting at the bottom edge -->
