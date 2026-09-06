@@ -220,6 +220,11 @@ img { max-width: 100%; }
   display: inline-flex; align-items: center; justify-content: center;
 }
 
+/* Auto-fitting grid. NOTE the min(): a bare minmax(320px, 1fr) sets a hard floor, so inside a
+   narrow card the column overflows its own container and overflow:hidden slices the content.
+   min(320px, 100%) keeps the intent on wide screens and lets the column shrink when it must. */
+.pl-autogrid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
+
 /* row that holds the hero pair */
 .pl-btn-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
