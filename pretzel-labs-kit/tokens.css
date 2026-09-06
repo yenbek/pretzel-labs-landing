@@ -1,0 +1,402 @@
+/* ==========================================================================
+   Pretzel Labs — design tokens and components
+   Every value here is lifted from the live home page, not invented.
+   Include this file first, then write your page with the .pl-* classes.
+   ========================================================================== */
+
+/* ---------- fonts (self-hosted, latin subset — the only one the site uses) */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(fonts/dmsans-rP2Hp2ywxg089UriCZOIHTWEBlw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url(fonts/spacegrotesk-V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  /* ---------- colour */
+  --pl-ink:            #1d1d1d;   /* headings, primary text */
+  --pl-muted:          #4d585f;   /* secondary text, nav links */
+  --pl-accent:         #f64c26;   /* the orange. links, bars, emphasis */
+  --pl-accent-hi:      #ff6a45;   /* only as the light end of the CTA gradient */
+  --pl-surface:        #edf1f4;   /* light grey panels, hover fills */
+  --pl-sky:            #cfe3f7;   /* flat sky blue, used behind photo cards */
+  --pl-paper:          #ffffff;
+
+  --pl-ok:             #10b981;   /* on track */
+  --pl-warn:           #ff8b06;   /* needs action */
+  --pl-risk:           #f51c23;   /* at risk */
+
+  /* ---------- the 4px ring: this is the signature of the whole site */
+  --pl-ring:           rgba(221, 229, 237, .7);
+  --pl-ring-hover:     rgba(246, 76, 38, .55);
+  --pl-ring-shadow:    0 0 0 4px var(--pl-ring);
+
+  /* ---------- frosted glass */
+  --pl-glass-bg:       rgba(255, 255, 255, .55);
+  --pl-glass-border:   rgba(255, 255, 255, .7);
+  --pl-glass-blur:     14px;
+  --pl-glass-shadow:   0 8px 30px rgba(29, 29, 29, .08);
+
+  /* ---------- radii */
+  --pl-r-pill:  100px;
+  --pl-r-nav:   56px;
+  --pl-r-xl:    30px;  /* full-width feature cards */
+  --pl-r-lg:    24px;  /* glass panels */
+  --pl-r-md:    20px;  /* bento tiles */
+  --pl-r-sm:    14px;  /* small inner chips */
+
+  /* ---------- type */
+  --pl-font-display: 'Space Grotesk', sans-serif;
+  --pl-font-text:    'DM Sans', sans-serif;
+
+  --pl-h1:      clamp(52px, 7vw, 100px);
+  --pl-h2:      clamp(40px, 5vw, 64px);
+  --pl-h3:      clamp(34px, 4vw, 48px);
+  --pl-h4:      28px;
+  --pl-lead:    20px;
+  --pl-body:    16px;
+  --pl-small:   14px;
+  --pl-tiny:    13px;
+
+  /* ---------- layout */
+  --pl-container: 1200px;
+  --pl-gutter:    30px;
+  --pl-section-y: 200px;  /* space above every section on desktop */
+
+  /* ---------- motion */
+  --pl-ease:   cubic-bezier(.2, .8, .2, 1);
+  --pl-fast:   .2s;
+  --pl-slow:   .35s;
+}
+
+/* ==========================================================================
+   base
+   ========================================================================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--pl-paper);
+  color: var(--pl-ink);
+  font-family: var(--pl-font-text);
+  font-weight: 500;
+  font-size: var(--pl-body);
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
+a { color: var(--pl-muted); text-decoration: none; transition: color var(--pl-fast); }
+a:hover { color: var(--pl-ink); }
+h1, h2, h3, h4 { margin: 0; }
+p { margin: 0; }
+img { max-width: 100%; }
+
+/* ==========================================================================
+   layout
+   ========================================================================== */
+.pl-section { padding: var(--pl-section-y) var(--pl-gutter) 0; }
+.pl-section--last { padding-bottom: 100px; }
+
+.pl-container { max-width: var(--pl-container); margin: 0 auto; }
+
+/* the standard section head: centred eyebrow render, heading, lead */
+.pl-head {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 20px;
+}
+.pl-head img { width: 216px; height: 216px; object-fit: contain; display: block; margin-bottom: 6px; }
+
+/* ==========================================================================
+   typography
+   ========================================================================== */
+.pl-h1, .pl-h2, .pl-h3, .pl-h4 {
+  font-family: var(--pl-font-display);
+  font-weight: 600;
+  text-wrap: balance;
+}
+.pl-h1 { font-size: var(--pl-h1); line-height: 1;    letter-spacing: -2px; }
+.pl-h2 { font-size: var(--pl-h2); line-height: 1.05; letter-spacing: -1.5px; max-width: 640px; }
+.pl-h3 { font-size: var(--pl-h3); line-height: 1.05; letter-spacing: -1px; }
+.pl-h4 { font-size: var(--pl-h4); line-height: 1.2;  letter-spacing: -.5px; }
+
+/* italics are the site's emphasis device — always inside a heading */
+.pl-h1 em, .pl-h2 em, .pl-h3 em, .pl-h4 em { font-style: italic; }
+.pl-h1 .pl-accent, .pl-h2 .pl-accent { color: var(--pl-accent); font-style: italic; }
+
+.pl-lead  { font-size: var(--pl-lead); line-height: 26px; color: var(--pl-ink);  max-width: 600px; text-wrap: pretty; }
+.pl-muted { color: var(--pl-muted); }
+.pl-small { font-size: var(--pl-small); }
+.pl-tiny  { font-size: var(--pl-tiny); }
+
+/* the little frosted label above a hero heading */
+.pl-eyebrow {
+  display: inline-block;
+  background: rgba(255, 255, 255, .7);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 10px 20px;
+  border-radius: var(--pl-r-pill);
+  font-size: var(--pl-small);
+  color: var(--pl-ink);
+}
+
+/* ==========================================================================
+   buttons — three kinds, nothing else
+   ========================================================================== */
+.pl-btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  border: 0; cursor: pointer;
+  border-radius: var(--pl-r-pill);
+  font-family: inherit; font-weight: 600;
+  text-decoration: none;
+  transition: filter var(--pl-fast), background var(--pl-fast), color var(--pl-fast);
+}
+.pl-btn:hover { filter: brightness(1.08); }
+
+/* primary — the orange one. Only one per screen. */
+.pl-btn--primary {
+  padding: 12px 12px 12px 30px;
+  font-size: 18px;
+  color: #fff;
+  background: linear-gradient(110deg, var(--pl-accent-hi) 0%, var(--pl-accent) 100%);
+  box-shadow: inset 4px 4px 8px rgba(255, 255, 255, .3),
+              inset -4px -4px 8px rgba(255, 255, 255, .3),
+              0 8px 16px rgba(246, 76, 38, .45);
+}
+/* wrap it in this to get the halo the hero button has */
+.pl-btn-halo {
+  display: inline-flex; padding: 6px; border-radius: var(--pl-r-pill);
+  background: rgba(255, 255, 255, .1);
+  backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+}
+
+/* dark — navigation and secondary conversion points */
+.pl-btn--dark {
+  height: 38px; padding: 10px 10px 10px 24px;
+  gap: 10px; font-size: var(--pl-small); color: #fff;
+  background: linear-gradient(110deg, #323232 0%, #000 100%);
+  box-shadow: inset 4px 4px 8px rgba(255, 255, 255, .3),
+              inset -4px -4px 8px rgba(255, 255, 255, .3),
+              0 4px 16px rgba(29, 29, 29, .5);
+}
+
+/* ghost — plain white pill on photography */
+.pl-btn--ghost {
+  height: 59px; padding: 18px 44px;
+  font-size: 18px; color: var(--pl-ink); background: #fff;
+}
+.pl-btn--ghost:hover { filter: none; background: var(--pl-surface); }
+
+/* the round arrow that rides inside primary/dark buttons */
+.pl-btn__arrow {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: #fff; color: var(--pl-accent);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: var(--pl-small);
+}
+.pl-btn--dark .pl-btn__arrow { width: 22px; height: 22px; color: var(--pl-ink); }
+
+/* ==========================================================================
+   surfaces
+   ========================================================================== */
+
+/* the ringed card — the base container for almost everything */
+.pl-card {
+  position: relative;
+  border-radius: var(--pl-r-xl);
+  background: var(--pl-surface);
+  box-shadow: var(--pl-ring-shadow);
+  padding: clamp(40px, 7vw, 100px) clamp(24px, 5vw, 60px);
+  overflow: hidden;
+  transition: box-shadow .3s;
+}
+.pl-card:hover { box-shadow: 0 0 0 4px var(--pl-ring-hover); }
+
+/* bento tile — smaller radius, photo or flat sky behind */
+.pl-tile {
+  position: relative;
+  border-radius: var(--pl-r-md);
+  overflow: hidden;
+  padding: 30px;
+  background: var(--pl-sky);
+  box-shadow: var(--pl-ring-shadow);
+  display: flex; flex-direction: column; gap: 16px;
+  transition: box-shadow .3s;
+}
+.pl-tile:hover { box-shadow: 0 0 0 4px var(--pl-ring-hover); }
+
+/* photographic backdrop for a tile — put this inside .pl-tile as the first child */
+.pl-tile__bg {
+  position: absolute; inset: 0; overflow: hidden;
+  background-position: center; background-size: cover;
+  transition: transform .8s var(--pl-ease); will-change: transform;
+}
+.pl-tile:hover .pl-tile__bg { transform: scale(1.06) translate(-1.5%, -1%); }
+/* keep real content above the backdrop */
+.pl-tile > *:not(.pl-tile__bg) { position: relative; z-index: 1; }
+
+/* frosted panel — the "UI screenshot" look, always on top of a photo */
+.pl-glass {
+  position: relative;
+  background: var(--pl-glass-bg);
+  backdrop-filter: blur(var(--pl-glass-blur));
+  -webkit-backdrop-filter: blur(var(--pl-glass-blur));
+  border: 1px solid var(--pl-glass-border);
+  box-shadow: var(--pl-glass-shadow);
+  border-radius: var(--pl-r-lg);
+  padding: 24px;
+  color: var(--pl-ink);
+  display: flex; flex-direction: column; gap: 14px;
+  transition: transform .5s var(--pl-ease), box-shadow .5s;
+}
+.pl-tile:hover .pl-glass { transform: scale(1.03); box-shadow: 0 16px 40px rgba(29, 29, 29, .14); }
+
+/* status chips inside glass panels */
+.pl-chip { font-size: var(--pl-small); font-weight: 600; padding: 4px 12px; border-radius: var(--pl-r-pill); white-space: nowrap; }
+.pl-chip--ok   { background: rgba(16, 185, 129, .2);  color: var(--pl-ok); }
+.pl-chip--warn { background: rgba(255, 139, 6, .12);  color: var(--pl-warn); }
+.pl-chip--risk { background: rgba(255, 13, 13, .05);  color: var(--pl-risk); }
+.pl-chip--flat { background: var(--pl-surface);       color: var(--pl-ink); }
+
+/* progress bar */
+.pl-bar { height: 5px; border-radius: var(--pl-r-pill); background: rgba(29, 29, 29, .08); overflow: hidden; }
+.pl-bar > i { display: block; height: 100%; border-radius: var(--pl-r-pill); background: var(--pl-accent); transition: width .5s var(--pl-ease); }
+
+/* selectable pill (step switchers, filters) */
+.pl-pill {
+  border: 0; cursor: pointer; font: inherit;
+  padding: 10px 20px; border-radius: var(--pl-r-pill);
+  font-size: var(--pl-small); font-weight: 500;
+  background: rgba(255, 255, 255, .7);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  color: var(--pl-ink);
+  transition: background var(--pl-fast), color var(--pl-fast), transform var(--pl-fast);
+}
+.pl-pill:hover { background: #fff; transform: translateY(-1px); }
+.pl-pill[aria-selected="true"] { background: var(--pl-ink); color: #fff; }
+
+/* ==========================================================================
+   the barely-there light that travels around a frosted panel's edge
+   Add class="pl-glass pl-edge-light" and it runs on its own.
+   ========================================================================== */
+@property --pl-edge { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+.pl-edge-light::after {
+  content: ""; position: absolute; inset: -1px;
+  border-radius: inherit; padding: 1px; pointer-events: none; opacity: .7;
+  background: conic-gradient(from var(--pl-edge) at 50% 50%,
+    rgba(255,255,255,0) 0deg, rgba(255,255,255,0) 190deg,
+    rgba(255,255,255,1) 250deg,
+    rgba(255,255,255,0) 310deg, rgba(255,255,255,0) 360deg);
+  -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+          mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: pl-edge-sweep 9s linear infinite;
+}
+@keyframes pl-edge-sweep { to { --pl-edge: 360deg; } }
+@media (prefers-reduced-motion: reduce) { .pl-edge-light::after { animation: none; opacity: 0; } }
+
+/* ==========================================================================
+   navigation — floating pill, identical on every page
+   ========================================================================== */
+.pl-navbar {
+  position: fixed; top: 20px; left: 0; right: 0; z-index: 50;
+  display: flex; justify-content: center; padding: 0 var(--pl-gutter);
+  pointer-events: none;
+}
+.pl-nav {
+  pointer-events: auto; position: relative;
+  width: 100%; max-width: 800px; height: 58px; padding: 10px;
+  border-radius: var(--pl-r-nav); background: #fff;
+  box-shadow: var(--pl-ring-shadow);
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
+.pl-nav__logo { display: flex; align-items: center; gap: 8px; color: var(--pl-ink); font-weight: 600; font-size: 17px; padding-left: 6px; white-space: nowrap; }
+.pl-nav__logo img { width: 32px; height: 32px; object-fit: contain; display: block; }
+.pl-nav__links { display: flex; gap: 2px; }
+.pl-nav__links a { white-space: nowrap; padding: 8px 16px; border-radius: var(--pl-r-pill); font-size: var(--pl-body); font-weight: 600; color: var(--pl-muted); }
+.pl-nav__links a:hover { background: var(--pl-surface); color: var(--pl-ink); }
+
+.pl-burger { display: none; flex: 0 0 auto; width: 38px; height: 38px; padding: 0; border: 0; border-radius: var(--pl-r-pill); background: var(--pl-surface); cursor: pointer; align-items: center; justify-content: center; flex-direction: column; gap: 4px; transition: background var(--pl-fast); }
+.pl-burger:hover { background: #e3e9ef; }
+.pl-burger span { display: block; width: 16px; height: 2px; border-radius: 2px; background: var(--pl-ink); transition: transform .25s var(--pl-ease), opacity var(--pl-fast); }
+.pl-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.pl-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.pl-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.pl-navmenu { display: none; }
+.pl-navmenu a { display: block; padding: 12px 18px; border-radius: var(--pl-r-pill); font-size: var(--pl-body); font-weight: 600; color: var(--pl-muted); transition: background var(--pl-fast), color var(--pl-fast); }
+.pl-navmenu a:hover { background: var(--pl-surface); color: var(--pl-ink); }
+
+/* ==========================================================================
+   hero — full-bleed sky, content centred, art at the bottom
+   ========================================================================== */
+.pl-hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  padding: 194px var(--pl-gutter) 0;
+  min-height: 100vh;
+  background-image: url(assets/hero-clouds.jpg);
+  background-size: cover; background-position: center;
+}
+/* the white fade that lets the sky dissolve into the page below */
+.pl-hero__fade {
+  position: absolute; inset: auto 0 0 0; height: 30%; z-index: 3; pointer-events: none;
+  background: linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,.7) 50%, #fff 100%);
+}
+
+/* ==========================================================================
+   footer
+   ========================================================================== */
+.pl-footer { display: flex; justify-content: space-between; gap: var(--pl-gutter); flex-wrap: wrap; align-items: flex-start; }
+.pl-footer h4 { font-size: var(--pl-body); font-weight: 600; color: var(--pl-ink); margin-bottom: 10px; }
+.pl-footer a { display: block; font-size: var(--pl-small); padding: 4px 0; }
+
+/* ==========================================================================
+   responsive — the two breakpoints the site uses, and nothing in between
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .pl-section { padding-top: 110px; }
+  .pl-hero { min-height: 0; padding-top: 130px; }
+
+  .pl-nav__links { display: none; }
+  .pl-burger { display: flex; margin-left: auto; }
+  .pl-navmenu {
+    display: flex; flex-direction: column; gap: 2px;
+    position: absolute; top: calc(100% + 10px); left: 0; right: 0;
+    background: #fff; border-radius: var(--pl-r-lg); padding: 8px;
+    box-shadow: var(--pl-ring-shadow), 0 12px 30px rgba(29, 29, 29, .1);
+    visibility: hidden; opacity: 0; transform: translateY(-6px); pointer-events: none;
+    transition: opacity var(--pl-fast), transform var(--pl-fast) var(--pl-ease), visibility var(--pl-fast);
+  }
+  .pl-navmenu[data-open] { visibility: visible; opacity: 1; transform: none; pointer-events: auto; }
+
+  .pl-head img { width: 120px; height: 120px; }
+  .pl-h1 { font-size: clamp(40px, 11vw, 72px); }
+  .pl-h2 { font-size: clamp(30px, 8vw, 44px); }
+  .pl-h3 { font-size: clamp(34px, 9vw, 56px); }
+
+  /* Never pin a card's height on a phone: the content is taller than the design
+     assumed and it gets clipped. Let everything grow. */
+  .pl-tile, .pl-card, .pl-glass { height: auto !important; aspect-ratio: auto !important; }
+  .pl-grid { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 640px) {
+  .pl-nav__wordmark { display: none; }   /* icon only — the pill runs out of room */
+  .pl-nav__logo { padding-left: 0; gap: 0; }
+  .pl-btn--dark { padding: 10px 10px 10px 16px; font-size: var(--pl-tiny); white-space: nowrap; }
+  .pl-tile { padding: 24px; }
+  .pl-hero { background-image: url(assets/hero-clouds-1250.webp); }
+}

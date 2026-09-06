@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "pretzel-optimized",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["serve.js", "4323"],
+      "port": 4323
+    },
+    {
+      "name": "pretzel-original",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4321", "--directory", "export"],
+      "port": 4321
+    }
+  ]
+}

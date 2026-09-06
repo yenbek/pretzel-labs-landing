@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+[data-h] [data-h-bg]{transition:transform .8s cubic-bezier(.2,.8,.2,1);will-change:transform}
+[data-h] [data-h-ui]{transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;will-change:transform}
+[data-h]:hover [data-h-bg]{transform:scale(1.06) translate(-1.5%,-1%)}
+[data-h]:hover [data-h-ui]{transform:scale(1.03);box-shadow:0 16px 40px rgba(29,29,29,.14)}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,500&amp;display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#fff;color:#1d1d1d;font-family:'DM Sans',sans-serif;font-weight:500;font-size:16px;line-height:1.3;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#4d585f;text-decoration:none}a:hover{color:#1d1d1d}
+h1,h2,h3,h4{margin:0}
+p{margin:0}
+
+@media (max-width:1024px){
+  section[data-screen-label]{padding-top:110px!important}
+  [data-m="nav-links"]{display:none!important}
+  [data-m="nav-logo"]{white-space:nowrap}
+  [data-m="hero"]{min-height:0!important;padding-top:130px!important}
+  [data-m="hero-spacer"]{height:clamp(160px,32vw,320px)!important}
+  [data-m="hero-pretzel"]{height:clamp(200px,44vw,420px)!important;bottom:-4%!important}
+  [data-m="feat-head"] > div:last-child{align-items:flex-start!important;text-align:left!important}
+  [data-m="eyebrow"]{width:120px!important;height:120px!important}
+  [data-m="pin"]{width:96px!important;height:96px!important;z-index:0;opacity:.9}
+  [data-m="pin"] ~ *{position:relative;z-index:1}
+  [data-m="bento"]{grid-template-columns:1fr!important;grid-template-rows:none!important;grid-auto-rows:minmax(360px,auto)!important}
+  [data-m="bento-tall"]{grid-row:auto!important;min-height:360px}
+  [data-m="bento-wide"]{grid-column:auto!important}
+  [data-m="tilt-wrap"]{display:flex!important;flex-direction:column!important;gap:16px!important;margin-top:20px!important}
+  [data-m="tilt"]{position:relative!important;left:auto!important;bottom:auto!important;top:auto!important;width:100%!important;aspect-ratio:auto!important;transform:none!important}
+  [data-m="mgr-card"]{order:2}
+  [data-m="cmp-head"]{display:none!important}
+  [data-m="cmp-row"]{grid-template-columns:1fr!important;gap:6px!important}
+  [data-m="cmp-row"] > div{padding:14px 20px!important}
+  [data-m="cta-hills"]{position:relative!important;top:auto!important;margin-top:24px!important}
+  [data-m="hero"] h1{font-size:clamp(40px,11vw,72px)!important}
+  h2{font-size:clamp(30px,8vw,44px)!important}
+  [data-screen-label="Features"] h2{font-size:clamp(34px,9vw,56px)!important}
+}
+@media (max-width:640px){
+  [data-m="nav-cta"]{padding:10px 10px 10px 16px!important;font-size:13px!important}
+  [data-m="bento"] > div{padding:24px!important}
+}
+@keyframes pretzelFloat{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-14px) rotate(1.5deg)}}
+</style>
+<template id="__bundler_thumbnail" data-bg-color="#edf1f4"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="30" fill="none" stroke="#b5651d" stroke-width="10"></circle></svg></template>
+
+</helmet>
+
+<div style="width:100%;overflow-x:clip;position:relative">
+
+<!-- NAV -->
+<div style="position:fixed;top:20px;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 30px;pointer-events:none">
+  <nav style="pointer-events: auto; width: 100%; max-width: 800px; height: 58px; padding: 10px; border-radius: 56px; background: #fff; box-shadow: 0 0 0 4px rgba(221,229,237,.7); display: flex; align-items: center; justify-content: space-between; gap: 10px">
+    <a data-m="nav-logo" href="#" style="display:flex;align-items:center;gap:8px;color:#1d1d1d;font-weight:600;font-size:17px;padding-left:6px">
+      <img src="assets/eyebrow/7.png" alt="Pretzel Labs" style="width:32px;height:32px;object-fit:contain;display:block">
+      Pretzel Labs
+    </a>
+    <div data-m="nav-links" style="display:flex;gap:2px">
+      <a href="#product" style="padding:8px 16px;border-radius:100px;font-size:16px;font-weight:600;color:#4d585f" style-hover="background:#edf1f4;color:#1d1d1d">Product</a>
+      <a href="#how" style="padding:8px 16px;border-radius:100px;font-size:16px;font-weight:600;color:#4d585f" style-hover="background:#edf1f4;color:#1d1d1d">Solutions</a>
+      <a href="#leaders" style="padding:8px 16px;border-radius:100px;font-size:16px;font-weight:600;color:#4d585f" style-hover="background:#edf1f4;color:#1d1d1d">Customers</a>
+      <a href="#compare" style="padding:8px 16px;border-radius:100px;font-size:16px;font-weight:600;color:#4d585f" style-hover="background:#edf1f4;color:#1d1d1d">Company</a>
+    </div>
+    <a data-m="nav-cta" href="#cta" style="display:flex;align-items:center;gap:10px;height:38px;padding:10px 10px 10px 24px;border-radius:100px;color:#fff;font-size:14px;font-weight:600;background:linear-gradient(110deg,#323232 0%,#000 100%);box-shadow:inset 4px 4px 8px rgba(255,255,255,.3),inset -4px -4px 8px rgba(255,255,255,.3),0 4px 16px rgba(29,29,29,.5);transition:filter .2s" style-hover="filter:brightness(1.25)">
+      Request access
+      <span style="width:22px;height:22px;border-radius:50%;background:#fff;color:#1d1d1d;display:inline-flex;align-items:center;justify-content:center;font-size:13px">→</span>
+    </a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section data-m="hero" id="hero" data-screen-label="Hero" style="position:relative;isolation:isolate;padding:194px 30px 0;background-image:url('assets/hero-clouds.jpg');background-size:cover;background-position:center;overflow:hidden;min-height:100vh">
+  <div style="position:absolute;inset:0;background:rgba(255,255,255,.08);pointer-events:none;z-index:0"></div>
+
+<div style="position:relative;z-index:4;max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:30px">
+    <span style="background:rgba(255,255,255,.7);backdrop-filter:blur(5px);padding:10px 20px;border-radius:100px;font-size:14px;color:#1d1d1d">Deal Execution Intelligence · Early access 2026</span>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(52px,7vw,100px);line-height:1;letter-spacing:-1.4px;color:#1d1d1d;max-width:1000px;text-wrap:balance">Your pipeline, <em style="font-style:italic;font-weight:600;color:#f64c26">finally honest</em> with you.</h1>
+    <p style="font-size:20px;line-height:26px;color:#1d1d1d;max-width:600px;text-wrap:pretty">Pretzel Labs is an AI-powered Deal Intelligence and Execution solution built for data-driven B2B sales teams.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+      <a href="#cta" style="display:inline-flex;padding:6px;border-radius:100px;background:rgba(255,255,255,.1);backdrop-filter:blur(5px)">
+        <span style="display:inline-flex;align-items:center;gap:14px;padding:12px 12px 12px 30px;border-radius:100px;color:#fff;font-size:18px;font-weight:600;background:linear-gradient(110deg,#ff6a45 0%,#f64c26 100%);box-shadow:inset 4px 4px 8px rgba(255,255,255,.3),inset -4px -4px 8px rgba(255,255,255,.3),0 8px 16px rgba(246,76,38,.45);transition:filter .2s" style-hover="filter:brightness(1.08)">Get a demo<span style="width:24px;height:24px;border-radius:50%;background:#fff;color:#f64c26;display:inline-flex;align-items:center;justify-content:center;font-size:14px">→</span></span>
+      </a>
+      <a href="#" style="display:inline-flex;align-items:center;height:59px;padding:18px 44px;border-radius:100px;background:#fff;color:#1d1d1d;font-size:18px;font-weight:600;transition:background .2s" style-hover="background:#edf1f4">Watch a 4-minute walkthrough</a>
+    </div>
+    <div style="display:flex;gap:36px;flex-wrap:wrap;justify-content:center;color:#1d1d1d;font-size:16px;font-weight:600">
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:18px;height:18px;border-radius:50%;background:#1d1d1d;color:#fff;font-size:11px;display:inline-flex;align-items:center;justify-content:center">✓</span>Signal-driven forecast</span>
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:18px;height:18px;border-radius:50%;background:#1d1d1d;color:#fff;font-size:11px;display:inline-flex;align-items:center;justify-content:center">✓</span>No rep logging</span>
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:18px;height:18px;border-radius:50%;background:#1d1d1d;color:#fff;font-size:11px;display:inline-flex;align-items:center;justify-content:center">✓</span>Built for B2B revenue teams</span>
+    </div>
+
+    <div data-m="hero-spacer" style="height:clamp(300px,40vw,560px)"></div>
+  </div>
+  <!-- 3D pretzel: between sky and hills, under the text -->
+  <div data-m="hero-pretzel" style="position:absolute;left:0;right:0;bottom:-6%;height:min(46vw,640px);pointer-events:none;z-index:1;overflow:visible">
+    <div ref="{{ pretzelRef }}" style="position:absolute;left:0;right:0;top:0;height:100%;width:100%;display:flex;align-items:center;justify-content:center;z-index:1;will-change:transform;transition:transform .6s cubic-bezier(.2,.8,.2,1)">
+      <img src="assets/pretzel-2d.webp" alt="" style="height:100%;width:auto;max-width:100%;object-fit:contain;display:block;filter:drop-shadow(0 30px 40px rgba(60,30,10,.25))">
+    </div>
+  </div>
+  <div style="position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.7) 50%,#fff 100%);pointer-events:none;z-index:3"></div>
+</section>
+
+<!-- FEATURES BENTO -->
+<section id="product" data-screen-label="Features" style="padding:200px 30px 0">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:70px">
+    <div data-m="feat-head" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <img src="assets/eyebrow/1.png" alt="" data-m="eyebrow" style="width:216px;height:216px;object-fit:contain;display:block;margin-bottom:6px">
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(40px,5vw,64px);line-height:1.05;letter-spacing:-1.5px;max-width:640px;text-wrap:balance">The engine behind every closed deal</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:30px;text-align:right">
+        <p style="font-size:20px;line-height:26px;color:#4d585f;max-width:480px;text-wrap:pretty">Deal intelligence for B2B sales teams that would rather act on signal than on reports.</p>
+        <a href="#cta" style="display:inline-flex;padding:6px;border-radius:100px;background:rgba(255,255,255,.1)"><span style="display:inline-flex;align-items:center;gap:14px;padding:12px 12px 12px 30px;border-radius:100px;color:#fff;font-size:18px;font-weight:600;background:linear-gradient(110deg,#323232 0%,#000 100%);box-shadow:inset 4px 4px 8px rgba(255,255,255,.3),inset -4px -4px 8px rgba(255,255,255,.3),0 8px 16px rgba(29,29,29,.5);transition:filter .2s" style-hover="filter:brightness(1.25)">View all features<span style="width:24px;height:24px;border-radius:50%;background:#fff;color:#1d1d1d;display:inline-flex;align-items:center;justify-content:center;font-size:14px">→</span></span></a>
+      </div>
+    </div>
+
+    <div data-m="bento" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:400px 370px;gap:30px">
+      <!-- 1 timeline (video) -->
+      <div style="position:relative;background:#edf1f4;border-radius:20px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;gap:14px;overflow:hidden;box-shadow:0 0 0 4px rgba(221,229,237,.7);transition:box-shadow .3s" style-hover="box-shadow:0 0 0 4px rgba(246,76,38,.55)">
+        <div ref="{{ glassDark }}" style="position:absolute;inset:0;overflow:hidden;background:url('assets/feature-timeline.jpg') center/cover"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.6) 0%,rgba(255,255,255,0) 35%,rgba(255,255,255,0) 60%,rgba(255,255,255,.85) 100%)"></div>
+        <h3 style="position:relative;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:28px;line-height:1.2;letter-spacing:-.5px;text-align:center;color:#1d1d1d">Every touch on one timeline</h3>
+        <div style="display:flex;flex-direction:column;gap:6px"><p style="position:relative;font-size:14px;line-height:1.4;color:#4d585f;text-align:center;max-width:320px;align-self:center;text-wrap:pretty">Emails, calls, and meetings — captured automatically, with no rep logging.</p><a href="#cta" style="position:relative;align-self:center;font-size:14px;font-weight:600;color:#f64c26">Learn more →</a></div>
+      </div>
+
+      <!-- 2 deal health -->
+      <div data-h="1" style="position:relative;border-radius:20px;overflow:hidden;background:#cfe3f7;padding:30px;display:flex;flex-direction:column;gap:16px;box-shadow:0 0 0 4px rgba(221,229,237,.7);transition:box-shadow .3s" style-hover="box-shadow:0 0 0 4px rgba(246,76,38,.55)">
+        <div ref="{{ glass2 }}" data-h-bg="1" style="position:absolute;inset:0;overflow:hidden;background:url('assets/feature-2.jpg') center/cover"></div>
+        <h3 style="position:relative;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:28px;line-height:1.2;letter-spacing:-.5px;text-align:center;color:#1d1d1d">Know why a deal is at risk</h3>
+        <div data-h-ui="1" style="position:relative;flex:1;background:rgba(255,255,255,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.7);box-shadow:0 8px 30px rgba(29,29,29,.08);border-radius:24px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:14px;color:#1d1d1d;min-height:0">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;color:#4d585f">Deal health</span><span style="font-size:13px;color:#f64c26;font-weight:600">At risk</span></div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:56px;line-height:1;letter-spacing:-2px">72<span style="font-size:20px;color:#4d585f;letter-spacing:0">/100</span></div>
+          <div style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#4d585f">MEDDICC</span><b>3 / 6</b></div><div style="height:5px;border-radius:100px;background:rgba(29,29,29,.08)"><div style="width:50%;height:100%;border-radius:100px;background:#f64c26"></div></div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px"><p style="position:relative;font-size:14px;line-height:1.4;color:#4d585f;text-align:center;max-width:320px;align-self:center;text-wrap:pretty">MEDDICC coverage, threading, and comms — scored live.</p><a href="#cta" style="position:relative;align-self:center;font-size:14px;font-weight:600;color:#f64c26">Learn more →</a></div>
+      </div>
+
+      <!-- 3 dark (AI) -->
+      <div data-m="bento-tall" style="grid-row:span 2;position:relative;background:#edf1f4;border-radius:20px;padding:40px;display:flex;flex-direction:column;justify-content:space-between;gap:30px;color:#1d1d1d;overflow:hidden;box-shadow:0 0 0 4px rgba(221,229,237,.7);transition:box-shadow .3s" style-hover="box-shadow:0 0 0 4px rgba(246,76,38,.55)">
+        <video ref="{{ videoRef }}" src="assets/feature-1.mp4" poster="assets/feature-1.png" autoPlay="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.8) 0%,rgba(255,255,255,0) 30%,rgba(255,255,255,0) 65%,rgba(255,255,255,.85) 100%)"></div>
+        <h3 style="position:relative;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:28px;line-height:1.2;letter-spacing:-.5px;text-align:center;color:#1d1d1d">AI to power your comms</h3>
+        <div style="position:relative;flex:1"></div>
+        <div style="display:flex;flex-direction:column;gap:6px"><p style="position:relative;font-size:14px;line-height:1.4;color:#4d585f;text-align:center;max-width:320px;align-self:center;text-wrap:pretty">Drafts in your voice, aware of every thread — plus a coach that plans your day.</p><a href="#cta" style="position:relative;align-self:center;font-size:14px;font-weight:600;color:#f64c26">Learn more →</a></div>
+      </div>
+
+      <!-- 4 forecasting (wide, tilted glass) -->
+      <div data-m="bento-wide" data-h="1" style="grid-column:span 2;position:relative;border-radius:20px;overflow:hidden;background:#edf1f4;padding:30px;display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center;box-shadow:0 0 0 4px rgba(221,229,237,.7);transition:box-shadow .3s" style-hover="box-shadow:0 0 0 4px rgba(246,76,38,.55)">
+        <div ref="{{ glass3 }}" data-h-bg="1" style="position:absolute;inset:0;overflow:hidden;background:url('assets/feature-3.jpg') center/cover"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.7) 0%,rgba(255,255,255,0) 45%)"></div>
+        <h3 style="position:relative;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:28px;line-height:1.2;letter-spacing:-.5px;text-align:center;color:#1d1d1d">Forecasting you can defend</h3>
+        <p style="position:relative;font-size:14px;line-height:1.4;color:#4d585f;text-align:center;max-width:320px;align-self:center;text-wrap:pretty">Pipeline, commit, and best case in one view — with slippage flagged early.</p><a href="#cta" style="position:relative;align-self:center;font-size:14px;font-weight:600;color:#f64c26">Learn more →</a>
+        <div data-m="tilt-wrap" style="position:relative;flex:1;width:100%;margin-top:10px">
+          <div data-m="tilt" style="position: absolute; left: 89px; width: 34%; aspect-ratio: 1; background: rgba(255,255,255,.55); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,.7); box-shadow: 0 8px 30px rgba(29,29,29,.08); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; justify-content: flex-start; gap: 18px; color: #1d1d1d; transform: rotate(-8deg); top: 37px">
+            <span style="font-size:13px;color:#4d585f">This quarter</span>
+            <div style="display:flex;flex-direction:column;gap:10px"><div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#4d585f">Pipeline</span><b>$1.2M</b></div><div style="height:5px;border-radius:100px;background:rgba(29,29,29,.08)"><div style="width:100%;height:100%;border-radius:100px;background:#1d1d1d"></div></div><div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#4d585f">Best case</span><b>$880k</b></div><div style="height:5px;border-radius:100px;background:rgba(29,29,29,.08)"><div style="width:73%;height:100%;border-radius:100px;background:#f64c26"></div></div><div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#4d585f">Commit</span><b>$640k</b></div><div style="height:5px;border-radius:100px;background:rgba(29,29,29,.08)"><div style="width:53%;height:100%;border-radius:100px;background:#10b981"></div></div></div>
+          </div>
+          <div data-m="tilt" style="position: absolute; left: 46%; bottom: -116px; width: 42%; aspect-ratio: 1.1; background: rgba(255,255,255,.55); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,.7); box-shadow: 0 8px 30px rgba(29,29,29,.08); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; justify-content: flex-start; gap: 18px; color: #1d1d1d; transform: rotate(6deg)">
+            <span style="font-size:13px;color:#4d585f">Open pipeline</span>
+            <div style="display:flex;flex-direction:column;gap:10px"><div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#4d585f">Acme Corp</span><b>$48k</b></div><div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#4d585f">Brioche Cap.</span><b>$31k</b></div><div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#4d585f">Croissant Inc.</span><b>$22k</b></div><div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#4d585f">Strudel Corp</span><b>$18k</b></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section data-screen-label="Why" style="padding:200px 30px 0">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:70px">
+    <div style="position:relative;display:flex;flex-direction:column;gap:10px">
+      <img data-m="pin" src="assets/eyebrow/2.png" alt="" style="position:absolute;right:0;top:50%;transform:translateY(-50%);width:160px;height:160px;object-fit:contain;display:block">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(34px,4vw,48px);line-height:1.2;letter-spacing:-1px;max-width:440px">Revenue runs on <em>real signal</em>.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px">
+      <sc-for list="{{ reasons }}" as="r" hint-placeholder-count="0">
+        <div onMouseEnter="{{ r.enter }}" data-cards="reasons" onMouseLeave="{{ r.leave }}" style="position:relative;overflow:hidden;background:#edf1f4;border-radius:30px;padding:30px;min-height:320px;box-shadow:0 0 0 4px rgba(221,229,237,.7);display:flex;flex-direction:column;justify-content:space-between;gap:30px;transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .3s" style-hover="box-shadow:0 0 0 4px rgba(246,76,38,.55)">
+          <img src="{{ r.icon }}" alt="" style="position:relative;z-index:2;width:56px;height:56px;object-fit:contain;align-self:flex-start">
+          <div style="position:relative;z-index:2;display:flex;flex-direction:column;gap:6px">
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:28px;line-height:1.2;letter-spacing:-.5px">{{ r.title }}</h3>
+            <p style="color:#4d585f">{{ r.text }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" data-screen-label="How it works" style="padding:200px 30px 0">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:70px">
+    <div style="position:relative;display:flex;flex-direction:column;gap:12px">
+      <img data-m="pin" src="assets/eyebrow/3.png" alt="" style="position:absolute;right:0;top:50%;transform:translateY(-50%);width:160px;height:160px;object-fit:contain;display:block">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(34px,4vw,48px);line-height:1.2;letter-spacing:-1px;max-width:560px">Signal → insight → <em>action.</em> Closed loop.</h2>
+      <p style="font-size:18px;color:#4d585f;text-wrap:pretty;max-width:520px">The right signal, analyzed, and turned into a next step — in under a minute.</p>
+    </div>
+    <div data-h="1" style="position:relative;border-radius:30px;overflow:hidden;padding:40px;box-shadow:0 0 0 4px rgba(221,229,237,.7);transition:box-shadow .3s;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;align-items:center;min-height:520px" style-hover="box-shadow:0 0 0 4px rgba(246,76,38,.55)">
+      <div data-h-bg="1" style="position:absolute;inset:0;background:url('assets/feature-3.jpg') center/cover"></div>
+      <div style="position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-height:100%">
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+            <button onClick="{{ s.select }}" style="{{ s.pillStyle }}" style-hover="{{ s.pillHover }}">{{ s.pill }}</button>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:64px;line-height:1;letter-spacing:-2px;color:#f64c26">{{ activeStep.num }}</span>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:28px;line-height:1.2;letter-spacing:-.5px">{{ activeStep.title }}</h3>
+          <p style="color:#1d1d1d;text-wrap:pretty;max-width:420px">{{ activeStep.text }}</p>
+        </div>
+      </div>
+      <div style="position:absolute;right:40px;bottom:40px;width:380px;max-width:calc(100% - 80px)">
+        <div data-h-ui="1" style="width:100%;height:220px;background:rgba(255,255,255,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.7);box-shadow:0 8px 30px rgba(29,29,29,.08);border-radius:24px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;color:#1d1d1d">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;color:#4d585f">Strudel Corp</span><span style="font-size:13px;color:#f64c26;font-weight:600">{{ activeStep.tag }}</span></div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:36px;line-height:1.05;letter-spacing:-1.5px;text-wrap:balance;min-height:76px;display:flex;align-items:center">{{ activeStep.big }}</div>
+          <div style="height:6px;border-radius:100px;background:rgba(29,29,29,.08)"><div style="{{ activeStep.barStyle }}"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR LEADERS -->
+<section id="leaders" data-screen-label="For revenue leaders" style="padding:200px 30px 0">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:70px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <img src="assets/eyebrow/4.png" alt="" data-m="eyebrow" style="width:216px;height:216px;object-fit:contain;display:block;margin-bottom:6px">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(34px,4vw,48px);line-height:1.2;letter-spacing:-1px">Commit a number you <em>actually trust.</em></h2>
+      <p style="font-size:18px;color:#4d585f;text-wrap:pretty;max-width:440px">Signal truth on Monday. Risks before the board call. A forecast explained deal by deal.</p>
+      <a href="#cta" style="align-self:flex-start;font-size:16px;font-weight:600;color:#f64c26;transition:color .2s" style-hover="color:#1d1d1d">Learn more →</a>
+    </div>
+    <div data-h="1" style="position:relative;border-radius:30px;overflow:hidden;aspect-ratio:1.1;padding:40px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px rgba(221,229,237,.7);transition:box-shadow .3s" style-hover="box-shadow:0 0 0 4px rgba(246,76,38,.55)">
+      <div data-h-bg="1" style="position:absolute;inset:0;background:url('assets/feature-3.jpg') center/cover"></div>
+      <div data-h-ui="1" style="position:relative;width:100%;max-width:380px;background:rgba(255,255,255,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.7);box-shadow:0 8px 30px rgba(29,29,29,.08);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:22px;color:#1d1d1d">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;color:#4d585f">Forecast · Q2</span><span style="font-size:13px;color:#4d585f">Week 7 / 13</span></div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:56px;line-height:1;letter-spacing:-2px">$1.8M<span style="font-size:20px;color:#4d585f;letter-spacing:0"> commit</span></div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;justify-content:space-between;font-size:14px"><span style="color:#4d585f">Best case</span><b>$2.4M</b></div><div style="height:6px;border-radius:100px;background:rgba(29,29,29,.08)"><div style="width:100%;height:100%;border-radius:100px;background:#1d1d1d"></div></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px"><span style="color:#4d585f">Commit</span><b>$1.8M</b></div><div style="height:6px;border-radius:100px;background:rgba(29,29,29,.08)"><div style="width:75%;height:100%;border-radius:100px;background:#10b981"></div></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px"><span style="color:#4d585f">At risk</span><b>$340K</b></div><div style="height:6px;border-radius:100px;background:rgba(29,29,29,.08)"><div style="width:14%;height:100%;border-radius:100px;background:#f64c26"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR MANAGERS -->
+<section data-screen-label="For sales managers" style="padding:200px 30px 0">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:70px;align-items:center">
+    <div data-m="mgr-card" data-h="1" style="position:relative;border-radius:30px;overflow:hidden;aspect-ratio:1.1;padding:40px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px rgba(221,229,237,.7);transition:box-shadow .3s" style-hover="box-shadow:0 0 0 4px rgba(246,76,38,.55)">
+      <div data-h-bg="1" style="position:absolute;inset:0;background:url('assets/feature-2.jpg') center/cover"></div>
+      <div data-h-ui="1" style="position:relative;width:100%;max-width:380px;background:rgba(255,255,255,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.7);box-shadow:0 8px 30px rgba(29,29,29,.08);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:22px;color:#1d1d1d">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;color:#4d585f">Monday</span><span style="font-size:13px;color:#4d585f">3 need you</span></div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:56px;line-height:1;letter-spacing:-2px">3<span style="font-size:20px;color:#4d585f;letter-spacing:0"> / 40</span></div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:14px;font-size:14px"><span style="width:10px;height:10px;border-radius:50%;background:#f64c26;flex:none"></span><span style="flex:1">Madeleine Corp</span><b>$180K</b></div>
+          <div style="display:flex;align-items:center;gap:14px;font-size:14px"><span style="width:10px;height:10px;border-radius:50%;background:#ff8b06;flex:none"></span><span style="flex:1">Tartelette Systems</span><b>$220K</b></div>
+          <div style="display:flex;align-items:center;gap:14px;font-size:14px"><span style="width:10px;height:10px;border-radius:50%;background:#1d1d1d;flex:none"></span><span style="flex:1">Marcus T. · coaching</span><b></b></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <img src="assets/eyebrow/5.png" alt="" data-m="eyebrow" style="width:216px;height:216px;object-fit:contain;display:block;margin-bottom:6px">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(34px,4vw,48px);line-height:1.2;letter-spacing:-1px">Coach the <em>actual problem,</em> not the reported one.</h2>
+      <p style="font-size:18px;color:#4d585f;text-wrap:pretty;max-width:440px">Monday shows you the three deals that need you — not forty. 1:1s run on evidence, not vibes.</p>
+      <a href="#cta" style="align-self:flex-start;font-size:16px;font-weight:600;color:#f64c26;transition:color .2s" style-hover="color:#1d1d1d">Learn more →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section id="compare" data-screen-label="Before and after" style="padding:200px 30px 0">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:70px">
+    <div style="position:relative;display:flex;flex-direction:column;gap:10px">
+      <img data-m="pin" src="assets/eyebrow/6.png" alt="" style="position:absolute;right:0;top:50%;transform:translateY(-50%);width:160px;height:160px;object-fit:contain;display:block">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(34px,4vw,48px);line-height:1.2;letter-spacing:-1px;max-width:520px">What changes when the <em>signal</em> is real</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div data-m="cmp-head" style="display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1fr) minmax(0,1fr);gap:20px;padding:0 30px;font-size:14px;color:#4d585f">
+        <span>Situation</span><span>Without Pretzel Labs</span><span style="color:#1d1d1d;font-weight:600">With Pretzel Labs</span>
+      </div>
+      <sc-for list="{{ compare }}" as="c" hint-placeholder-count="6">
+        <div data-m="cmp-row" style="display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1fr) minmax(0,1fr);gap:20px;background:#edf1f4;border-radius:20px;padding:10px;box-shadow:0 0 0 4px rgba(221,229,237,.7);transition:box-shadow .3s" style-hover="box-shadow:0 0 0 4px rgba(246,76,38,.55)">
+          <div style="padding:20px;display:flex;align-items:center;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;line-height:1.2">{{ c.s }}</div>
+          <div style="padding:20px;display:flex;align-items:center;color:#4d585f;text-wrap:pretty">{{ c.before }}</div>
+          <div style="padding:20px;display:flex;align-items:center;background:#fff;border-radius:14px;text-wrap:pretty">{{ c.after }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- CTA + FOOTER -->
+<section id="cta" data-screen-label="CTA &amp; footer" style="padding:200px 30px 100px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:100px">
+    <div style="box-shadow:0 0 0 4px rgba(221,229,237,.7); position: relative; background: #edf1f4; border-radius: 30px; padding: clamp(40px,7vw,100px) clamp(24px,5vw,60px) 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; overflow: hidden; height: 760px;transition:box-shadow .3s" style-hover="box-shadow:0 0 0 4px rgba(246,76,38,.55)">
+      <img src="assets/eyebrow/7.png" alt="" style="width:120px;height:120px;object-fit:contain;display:block;margin:0 auto;margin-bottom:6px;position:relative;z-index:2"><h2 style="position:relative;z-index:2;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(40px,5vw,64px);line-height:1.05;letter-spacing:-1.5px;max-width:760px;text-wrap:balance">Stop managing a reporting process. <em>Start leading a business.</em></h2><p style="position:relative;z-index:2;font-size:20px;line-height:26px;color:#4d585f;max-width:560px;text-wrap:pretty">Private early access. A 30-minute conversation about your pipeline.</p>
+      
+      
+      <a href="#" style="position:relative;z-index:2;margin-top:20px;display:inline-flex;padding:6px;border-radius:100px;background:rgba(255,255,255,.1)"><span style="display:inline-flex;align-items:center;gap:14px;padding:12px 12px 12px 30px;border-radius:100px;color:#fff;font-size:18px;font-weight:600;background:linear-gradient(110deg,#ff6a45 0%,#f64c26 100%);box-shadow:inset 4px 4px 8px rgba(255,255,255,.3),inset -4px -4px 8px rgba(255,255,255,.3),0 8px 16px rgba(246,76,38,.45);transition:filter .2s" style-hover="filter:brightness(1.08)">Get a demo<span style="width:24px;height:24px;border-radius:50%;background:#fff;color:#f64c26;display:inline-flex;align-items:center;justify-content:center;font-size:14px">→</span></span></a>
+      <!-- hills -->
+      <img data-m="cta-hills" src="assets/cta-hills-cut2.webp" alt="" style="position: absolute; z-index: 0; width: calc(100% + 2 * clamp(24px,5vw,60px)); max-width: none; height: auto; display: block; margin: 40px calc(-1 * clamp(24px,5vw,60px)) 0; flex: none; top: 430px">
+    </div>
+    <footer style="display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start">
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:420px">
+        <span style="display:flex;align-items:center;gap:8px;font-weight:600;font-size:17px"><img src="assets/eyebrow/7.png" alt="Pretzel Labs" style="width:32px;height:32px;object-fit:contain;display:block">Pretzel Labs</span>
+        <span style="font-size:18px;color:#4d585f">Deal Execution Intelligence · Early access 2026</span>
+        <span style="color:#4d585f">Built for revenue teams that want fewer surprises and better quarters.</span>
+      </div>
+      <div style="display:flex;gap:70px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:14px"><span style="font-size:20px">Product</span><a href="#product" style="transition:color .2s" style-hover="color:#f64c26">Features</a><a href="#how" style="transition:color .2s" style-hover="color:#f64c26">How it works</a><a href="#compare" style="transition:color .2s" style-hover="color:#f64c26">Before &amp; after</a></div>
+        <div style="display:flex;flex-direction:column;gap:14px"><span style="font-size:20px">Solutions</span><a href="#leaders" style="transition:color .2s" style-hover="color:#f64c26">Revenue leaders</a><a href="#leaders" style="transition:color .2s" style-hover="color:#f64c26">Sales managers</a><a href="#cta" style="transition:color .2s" style-hover="color:#f64c26">Early access</a></div>
+        <div style="display:flex;flex-direction:column;gap:14px"><span style="font-size:20px">Company</span><a href="#" style="transition:color .2s" style-hover="color:#f64c26">Customers</a><a href="#" style="transition:color .2s" style-hover="color:#f64c26">Resources</a><a href="#cta" style="display:inline-flex;align-self:flex-start;padding:10px 20px;border-radius:100px;background:#1d1d1d;color:#fff;font-weight:600;font-size:16px;transition:background .2s" style-hover="background:#f64c26">hello@pretzel-labs.com</a></div>
+      </div>
+    </footer>
+  </div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;autoRotateSteps&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;How it works&quot;},&quot;darkAlerts&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;How it works&quot;}}">
+class Component extends DCLogic {
+  state = { step: 0, hover: -1 };
+
+  pretzelRef = React.createRef();
+  videoRef = React.createRef();
+  glass2 = React.createRef(); glassDark = React.createRef(); glass3 = React.createRef();
+  glassUnmounts = [];
+  componentDidMount() {
+    import('./fluted-glass.js').then(async ({ mountFlutedGlass }) => {
+      for (const [ref, img] of [[this.glass2, 'assets/feature-2.jpg'], [this.glassDark, 'assets/feature-timeline.jpg'], [this.glass3, 'assets/feature-3.jpg']]) {
+        if (ref.current) this.glassUnmounts.push(await mountFlutedGlass(ref.current, img));
+      }
+    }).catch(() => {});
+    // light parallax: pretzel follows the cursor
+    this.onMove = (e) => {
+      const el = this.pretzelRef.current; if (!el) return;
+      const dx = (e.clientX / innerWidth - 0.5), dy = (e.clientY / innerHeight - 0.5);
+      el.style.transform = `translate(${dx * 40}px, ${dy * 24}px) rotate(${dx * 4}deg)`;
+    };
+    window.addEventListener('pointermove', this.onMove);
+    // slow ping-pong playback: forward at 0.5x, then scrub backwards — no visible loop seam
+    const v = this.videoRef.current;
+    if (v) {
+      v.playbackRate = 0.5;
+      let dir = 1, last = 0;
+      const tick = (now) => {
+        if (!this.videoRef.current) return;
+        if (dir === -1 && v.duration) {
+          const dt = Math.min(0.05, (now - last) / 1000) * 0.5;
+          v.currentTime = Math.max(0, v.currentTime - dt);
+          if (v.currentTime <= 0.05) { dir = 1; v.play(); }
+        }
+        last = now;
+        this.raf = requestAnimationFrame(tick);
+      };
+      v.addEventListener('ended', () => { dir = -1; v.pause(); });
+      this.raf = requestAnimationFrame(tick);
+    }
+    if (this.props.autoRotateSteps ?? true) {
+      this.timer = setInterval(() => this.setState(s => ({ step: (s.step + 1) % 5 })), 4000);
+    }
+  }
+  componentWillUnmount() { this.glassUnmounts.forEach(u => u()); clearInterval(this.timer); cancelAnimationFrame(this.raf); window.removeEventListener('pointermove', this.onMove); }
+  renderVals() {
+    const stepsData = [
+      ['01', 'Capture signals', 'Emails, meetings, calendar patterns, and stakeholder behavior — captured automatically.', 'Captured', '128 signals', '20%'],
+      ['02', 'Get a live pulse of each deal', 'Relationship maps, engagement, threading, and execution gaps — assembled in real time.', 'Live', 'Health 72 / 100', '40%'],
+      ['03', 'Surface risk early', 'EB disengagement or a stalled deal — flagged to your team over Slack and email.', 'At risk', 'CFO silent 19 days', '60%'],
+      ['04', 'Enable action', 'Tailored recommendations — run them yourself or let Pretzel handle it.', 'Next step', 'Book exec alignment', '80%'],
+      ['05', 'Capitalize on every win', 'Each outcome feeds back into win patterns shared across the team.', 'Closed', 'Won · $180K', '100%'],
+    ];
+    const base = 'border:0;cursor:pointer;font:inherit;padding:10px 20px;border-radius:100px;font-size:14px;font-weight:500;transition:background .2s,color .2s,transform .2s;';
+    const steps = stepsData.map((s, i) => ({
+      pill: 'Step ' + s[0],
+      select: () => { clearInterval(this.timer); this.setState({ step: i }); },
+      pillStyle: base + (i === this.state.step ? 'background:#1d1d1d;color:#fff' : 'background:rgba(255,255,255,.7);backdrop-filter:blur(8px);color:#1d1d1d'),
+      pillHover: i === this.state.step ? 'transform:translateY(-1px)' : 'background:#fff;transform:translateY(-1px)',
+    }));
+    const a = stepsData[this.state.step];
+    const tag = (bg, c) => `background:${bg};color:${c};font-size:14px;font-weight:600;padding:4px 12px;border-radius:100px;white-space:nowrap`;
+    const dark = this.props.darkAlerts ?? false;
+    return {
+      pretzelRef: this.pretzelRef,
+      glass2: this.glass2, glassDark: this.glassDark, glass3: this.glass3,
+      videoRef: this.videoRef,
+      steps,
+      activeStep: { num: a[0], title: a[1], text: a[2], tag: a[3], big: a[4], barStyle: `width:${a[5]};height:100%;border-radius:100px;background:#f64c26;transition:width .5s cubic-bezier(.2,.8,.2,1)` },
+      reasons: [
+        { label: 'Pipeline truth', title: 'See the deal, not the story', text: 'What is real, not what reps hope.' },
+        { label: 'Early warning', title: 'Risk, caught early', text: 'Weeks before close, not after.' },
+        { label: 'Coaching', title: 'Coaching that lands', text: 'Evidence, not vibes.' },
+        { label: 'Forecasting', title: 'A number you can defend', text: 'Backed by real signal.' },
+      ].map((r, i) => {
+        const on = this.state.hover === i;
+        return {
+          icon: `assets/icons/${i + 1}.png`,
+          ...r,
+          enter: () => this.setState({ hover: i }),
+          leave: () => this.setState(s => (s.hover === i ? { hover: -1 } : null)),
+        };
+      }),
+      alerts: [
+        { title: 'EB disengaged — Strudel Corp', tag: 'High risk', tagStyle: tag('rgba(255,13,13,.05)', '#f51c23'), text: 'CFO Sarah Cannoli has not responded to any comms in 19 days. Champion marked deal as on track. Last call had no executive present.' },
+        { title: 'No clear next step — Brioche Capital', tag: 'Needs action', tagStyle: tag('rgba(255,139,6,.12)', '#ff8b06'), text: 'Deal has been in Solution Proposed for 13 days with no confirmed next step. Close date is next week.' },
+        { title: 'Multi-threading achieved — Croissant Inc.', tag: 'On track', tagStyle: tag('rgba(16,185,129,.2)', '#10b981'), text: 'Five stakeholders engaged across Procurement, IT, and Finance. Legal introduced this week. Positive velocity.' },
+        { title: 'Coaching moment — Rep: Tom F.', tag: 'Coaching cue', tagStyle: tag(dark ? '#1d1d1d' : '#edf1f4', dark ? '#fff' : '#1d1d1d'), text: 'Discovery calls average 38 min with weak engagement. Proposal-to-close is 22% vs. team avg 38%. Framing gap, effort gap.' },
+      ],
+      leaderPoints: [
+        'Forecast built from verified signals — not rep confidence scores',
+        'Multi-stakeholder gaps caught before deals go single-threaded',
+        'Strategy-to-execution gap visible within days, not quarters',
+        'Board narrative from ground truth — not CRM exports',
+        'Rep departures no longer reset territory knowledge to zero',
+      ],
+      managerPoints: [
+        'Deal reviews surface problems in week two — not week eleven',
+        'Coaching grounded in behavioral signal, not rep self-report',
+        'Methodology gaps flagged automatically — no manual auditing',
+        'Reporting time reclaimed for actual deal conversations',
+        'Rep variance narrows — top performer patterns shared across the team',
+      ],
+      compare: [
+        { s: 'Monday pipeline review', before: 'Reps tell you what they want you to hear. You update slides from gut feel.', after: 'Signal-verified view surfaces the three deals that need your attention before you ask.' },
+        { s: 'Forecast commit', before: 'Built from rep optimism and manager rounding. Accurate under 25% of the time.', after: 'Backed by behavioral evidence. You commit a number you can explain deal by deal.' },
+        { s: 'Deal goes dark', before: 'You find out when the rep mentions it or the close date passes.', after: 'Silence flagged on day three. Coaching cue surfaced. There is still time to act.' },
+        { s: 'Coaching a rep', before: '"How is Torchlight looking?" Rep answers. You coach based on what they say.', after: '"Engagement dropped after your demo — here is the behavioral pattern. What happened?"' },
+        { s: 'Top rep leaves', before: 'Their deal knowledge, stakeholder maps, and winning patterns leave with them.', after: 'Everything captured. The next rep inherits the full picture and picks up without starting over.' },
+        { s: 'New sales initiative', before: 'You train the team, then wait a quarter to see if anything changed in results.', after: 'You see behavioral signal change within days. Adjust before the window closes.' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

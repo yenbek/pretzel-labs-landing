@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pretzel Labs — new page</title>
+
+<!-- LCP assets first. Swap the hero image if your page uses a different one. -->
+<link rel="preload" as="image" href="assets/hero-clouds-1250.webp" media="(max-width:640px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/hero-clouds.jpg" media="(min-width:641px)" fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" href="fonts/dmsans-rP2Hp2ywxg089UriCZOIHTWEBlw.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/spacegrotesk-V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2" crossorigin>
+
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+
+<!-- ============================ NAV — copy verbatim onto every page ======= -->
+<div class="pl-navbar">
+  <nav class="pl-nav">
+    <a class="pl-nav__logo" href="/">
+      <img src="assets/eyebrow/7-64.webp" alt="Pretzel Labs" width="32" height="32">
+      <span class="pl-nav__wordmark">Pretzel Labs</span>
+    </a>
+    <div class="pl-nav__links">
+      <a href="/product">Product</a>
+      <a href="/how-it-works">Solutions</a>
+      <a href="/customers">Customers</a>
+      <a href="/company">Company</a>
+    </div>
+    <button class="pl-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="pl-navmenu">
+      <span></span><span></span><span></span>
+    </button>
+    <a class="pl-btn pl-btn--dark" href="/request-access">
+      Request access <span class="pl-btn__arrow">&rarr;</span>
+    </a>
+    <div class="pl-navmenu" id="pl-navmenu">
+      <a href="/product">Product</a>
+      <a href="/how-it-works">Solutions</a>
+      <a href="/customers">Customers</a>
+      <a href="/company">Company</a>
+    </div>
+  </nav>
+</div>
+
+<!-- ============================ HERO ===================================== -->
+<section class="pl-hero">
+  <div class="pl-container" style="position:relative;z-index:4;display:flex;flex-direction:column;align-items:center;text-align:center;gap:30px">
+    <span class="pl-eyebrow">Section label &middot; Early access 2026</span>
+    <h1 class="pl-h1">A headline with <em>one italic</em> phrase.</h1>
+    <p class="pl-lead">One or two sentences. Say the thing plainly — the page does the
+      decoration, the copy does not.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+      <span class="pl-btn-halo">
+        <a class="pl-btn pl-btn--primary" href="/demo">Get a demo <span class="pl-btn__arrow">&rarr;</span></a>
+      </span>
+      <a class="pl-btn pl-btn--ghost" href="/tour">Watch a 4-minute walkthrough</a>
+    </div>
+  </div>
+  <!-- optional hero art: a pretzel render sitting at the bottom edge -->
+  <div style="position:relative;z-index:1;display:flex;justify-content:center;margin-top:60px">
+    <img src="assets/pretzel-2d.webp"
+         srcset="assets/pretzel-2d-460.webp 460w, assets/pretzel-2d-840.webp 840w, assets/pretzel-2d.webp 1377w"
+         sizes="(max-width:453px) 228px, (max-width:640px) 330px, (max-width:1024px) 440px, 740px"
+         alt="" style="height:clamp(200px,44vw,420px);width:auto;object-fit:contain;display:block;
+                       filter:drop-shadow(0 30px 40px rgba(60,30,10,.25))">
+  </div>
+  <div class="pl-hero__fade"></div>
+</section>
+
+<!-- ============================ A STANDARD SECTION ======================= -->
+<section class="pl-section">
+  <div class="pl-container pl-head">
+    <img src="assets/eyebrow/1.webp" alt="" loading="lazy" decoding="async">
+    <h2 class="pl-h2">Section heading, <em>with emphasis</em></h2>
+    <p class="pl-lead pl-muted">Supporting line. Keep it under two sentences.</p>
+  </div>
+</section>
+
+<!-- ============================ BENTO GRID =============================== -->
+<section class="pl-section">
+  <div class="pl-container">
+    <div class="pl-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+
+      <!-- tile with a photographic backdrop and a frosted panel on top -->
+      <div class="pl-tile">
+        <div class="pl-tile__bg" style="background-image:url(assets/feature-2.jpg)"></div>
+        <h3 class="pl-h4" style="text-align:center">Tile with a glass panel</h3>
+        <div class="pl-glass pl-edge-light" style="flex:1;justify-content:space-between">
+          <div style="display:flex;justify-content:space-between;align-items:baseline">
+            <span class="pl-tiny pl-muted">Deal health</span>
+            <span class="pl-tiny" style="color:var(--pl-accent);font-weight:600">At risk</span>
+          </div>
+          <div style="font-family:var(--pl-font-display);font-weight:600;font-size:56px;line-height:1;letter-spacing:-2px">
+            72<span style="font-size:20px;color:var(--pl-muted);letter-spacing:0">/100</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between" class="pl-tiny">
+              <span class="pl-muted">MEDDICC</span><b>3 / 6</b>
+            </div>
+            <div class="pl-bar"><i style="width:50%"></i></div>
+          </div>
+        </div>
+        <p class="pl-small pl-muted" style="text-align:center">One line of caption.</p>
+        <a href="#" class="pl-small" style="color:var(--pl-accent);font-weight:600;text-align:center">Learn more &rarr;</a>
+      </div>
+
+      <!-- flat tile, no photo -->
+      <div class="pl-tile" style="background:var(--pl-surface)">
+        <img src="assets/icons/1.webp" alt="" width="56" height="56" loading="lazy" decoding="async"
+             style="width:56px;height:56px;object-fit:contain;align-self:flex-start">
+        <h3 class="pl-h4">Flat tile</h3>
+        <p class="pl-small pl-muted">Use the line-art icons here, never the 3D renders.</p>
+      </div>
+
+      <!-- sky tile -->
+      <div class="pl-tile">
+        <div class="pl-tile__bg" style="background-image:url(assets/feature-3.jpg)"></div>
+        <h3 class="pl-h4" style="text-align:center">Sky tile</h3>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA + FOOTER ============================= -->
+<section class="pl-section pl-section--last">
+  <div class="pl-container" style="display:flex;flex-direction:column;gap:100px">
+
+    <div class="pl-card" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;padding-bottom:0;min-height:760px">
+      <img src="assets/eyebrow/7.webp" alt="" width="120" height="120" loading="lazy" decoding="async"
+           style="width:120px;height:120px;object-fit:contain;position:relative;z-index:2">
+      <h2 class="pl-h2" style="position:relative;z-index:2;max-width:760px">Closing line. <em>Make it a decision.</em></h2>
+      <p class="pl-lead pl-muted" style="position:relative;z-index:2;max-width:560px">One sentence about what happens next.</p>
+      <span class="pl-btn-halo" style="position:relative;z-index:2;margin-top:20px">
+        <a class="pl-btn pl-btn--primary" href="/demo">Get a demo <span class="pl-btn__arrow">&rarr;</span></a>
+      </span>
+      <!-- Landscape sitting on the card's bottom edge. Keep it IN FLOW with margin-top:auto —
+           absolute positioning slides it under the copy at some widths and kills the contrast. -->
+      <img src="assets/cta-hills-cut2.webp" alt="" loading="lazy" decoding="async"
+           style="position:relative;z-index:0;align-self:center;
+                  width:calc(100% + 2 * clamp(24px,5vw,60px));max-width:none;height:auto;display:block;
+                  margin:auto calc(-1 * clamp(24px,5vw,60px)) 0">
+    </div>
+
+    <footer class="pl-footer">
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:420px">
+        <span style="display:flex;align-items:center;gap:8px;font-weight:600;font-size:17px">
+          <img src="assets/eyebrow/7-64.webp" alt="Pretzel Labs" width="32" height="32"
+               loading="lazy" decoding="async" style="width:32px;height:32px;object-fit:contain">
+          Pretzel Labs
+        </span>
+        <p class="pl-lead">Deal Execution Intelligence &middot; Early access 2026</p>
+        <p class="pl-small pl-muted">One sentence of positioning.</p>
+      </div>
+      <div><h4>Product</h4><a href="/product">Features</a><a href="/how-it-works">Solutions</a></div>
+      <div><h4>Solutions</h4><a href="/leaders">Revenue leaders</a><a href="/managers">Sales managers</a></div>
+      <div><h4>Company</h4><a href="/customers">Customers</a><a href="/resources">Resources</a>
+        <a class="pl-btn pl-btn--dark" href="mailto:hello@pretzel-labs.com" style="margin-top:10px">hello@pretzel-labs.com</a></div>
+    </footer>
+
+  </div>
+</section>
+
+<script>
+// The only script the shell needs: the mobile menu.
+(function () {
+  var b = document.querySelector('.pl-burger'), m = document.getElementById('pl-navmenu');
+  if (!b || !m) return;
+  var set = function (open) {
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    b.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (open) m.setAttribute('data-open', ''); else m.removeAttribute('data-open');
+  };
+  b.addEventListener('click', function (e) { e.stopPropagation(); set(b.getAttribute('aria-expanded') !== 'true'); });
+  m.addEventListener('click', function (e) { if (e.target.tagName === 'A') set(false); });
+  document.addEventListener('click', function (e) { if (!m.contains(e.target) && !b.contains(e.target)) set(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 1024) set(false); });
+})();
+</script>
+</body>
+</html>

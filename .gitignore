@@ -1,0 +1,9 @@
+# Vercel project linkage — machine local
+.vercel/
+**/.vercel/
+
+# deliverable archive, regenerate with:  zip -rq pretzel-labs-kit.zip pretzel-labs-kit
+*.zip
+
+node_modules/
+.DS_Store
