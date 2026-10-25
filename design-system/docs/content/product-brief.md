@@ -3,7 +3,7 @@
 # Pretzel — Product Brief for the Landing Site
 
 > Source of truth for anyone writing or reviewing copy on this site.
-> Verified against the product repo (`Pretzel-labs`, branch `staging`, commit `a4913c5`) on **2026-10-24**.
+> Verified against the product repo (`Pretzel-labs`, branch `staging`, commit `a4913c5`) on **2026-10-24**; re-verified at `e274324` on **2026-10-25** after the product docs were reconciled (PR #27). Capability status in the product repo lives in `docs/positioning/product.md` and `docs/positioning/gtm/product-features-map/product-features-map.md`.
 > Re-verify the "Status" columns before each major copy change — the product moves fast.
 
 ---
@@ -71,12 +71,12 @@ Status legend: **Live** = in the shipping app with real customer data · **Parti
 
 | Pillar | Promise | Status | Notes |
 |---|---|---|---|
-| **Deal Communication Hub** | Every email and call on one deal timeline, no rep logging | **Live** | Strongest, most demo-ready part of the product. Calendar events not yet. |
-| **Execution Signals** | Know which deals need you and why | **Live** | Rule-based, admin-configurable per org (§6). |
-| **Team Execution View** | Managers see where each rep's deals are slipping | **Partial** | Communication concerns work; MEDDIC / multi-threading / competitor tiles have no data yet. |
+| **Deal Communication Hub** | Every email and call on one deal timeline, no rep logging | **Partial** | Emails and Gong calls on one timeline is the strongest, most demo-ready part. Calls show Gong's summary, not the transcript; no calendar events, per-contact tracking or meeting types. |
+| **Execution Signals** | Know which deals need you and why | **Live** | Rule-based. The org's configurable rules apply to the All Deals board; Home and Team use fixed 14 / 7-day thresholds (§6). |
+| **Team Execution View** | Managers see where each rep's deals are slipping | **Partial** | Communication concerns work. MEDDIC and multi-threading tiles currently flag every deal (bug) and competitor mentions are always zero. |
 | **AI-powered follow-ups** | Context-aware drafts from the full deal history, one-click send | **Vision** | No AI in the product today; Gmail access is read-only. |
 | **Deal health score / MEDDICC** | Score every deal; show what's missing | **Vision** | Columns and UI exist; scores are not computed. |
-| **Forecast** | Commit a number you can defend | **Partial** | Weighted pipeline, at-risk deals, aging, stage funnel exist. No quota, no history, prototype scoring. |
+| **Forecast** | Commit a number you can defend | **Partial** | Pipeline by stage and deal aging work. The deal score draws ~45 of 100 points from fields that are always empty, so live deals never reach Commit / Best case and the at-risk panel effectively lists the largest deals. No quota, no history. |
 | **Proactive alerts (Slack / email)** | Pretzel pushes the risk to you | **Vision** | No alert delivery exists yet. |
 | **Win-pattern learning** | Outcomes feed back into team playbooks | **Vision** | Not designed in detail. |
 
@@ -88,30 +88,30 @@ Status legend: **Live** = in the shipping app with real customer data · **Parti
 
 | Signal | Definition | Default |
 |---|---|---|
-| **Going dark** | No activity on the deal (or no activity from the prospect) for N days | 14 days (1–90) |
-| **Stale touch** | No touch from the rep for N days | 7 days (1–90) |
+| **Going dark** | No activity on the deal (or no activity from the prospect) for N days | 14 days (1–90; the setting applies to All Deals, Home/Team use 14) |
+| **Stale touch** | No touch from the rep for N days | 7 days (1–90; the setting applies to All Deals, Home/Team use 7) |
 | **Unanswered inbound** | Prospect emailed; no reply yet | On |
-| **Missing follow-up after meeting** | A call happened; no follow-up email before the next meeting | On |
-| **Repeated declines** | Prospect declined N meetings in a row | 2 (2–10) |
+| **Missing follow-up after meeting** | A Gong meeting happened and no outbound email has been sent since | On |
+| **Repeated declines** | Prospect declined N meetings (All Deals rule counts total declines); the deal-level flag fires on 2+ consecutive trailing declines | 2 (2–10) |
 | **Silence gaps** | Count of gaps of N+ days in the deal's history | 10 and 20 days (3–60) |
 
 Also computed per deal: days since last inbound / outbound / any activity / last meeting, longest silence, % inbound emails replied same day, % meetings followed up by next day, days in current stage, deal age, overdue close date.
 
 Rules that make the signals trustworthy (good proof points):
 - Out-of-office auto-replies don't count as activity.
-- A risk flag clears only when the rep actually acts (an outbound email or call), not when time passes.
+- A risk flag clears only when the rep actually acts, not when time passes (unanswered inbound: an outbound email or call; missing follow-up: an outbound email).
 
 ### Screens
 
 - **Home** — four action cards (missing follow-up, unanswered inbound, no next meeting\*, going dark), each one click away from the filtered deal list. \*Needs calendar data; not active yet.
 - **Deals** — multiple saved boards, tabs by stage or forecast category, ~80 columns, rich filters, per-user layouts.
-- **Activity Timeline** — emails and call recordings (with transcripts) in order, with silence gaps marked.
-- **Team Performance** (Extended/Pro) — rep × concern heatmap, team deals table.
-- **Forecast** (Pro) — weighted pipeline, segment breakdown, top deals at risk, deal aging, stage funnel.
+- **Activity Timeline** — emails and Gong calls in order; calls show Gong's summary (transcripts are stored but not shown). Covers open deals and the last 365 days.
+- **Team Performance** (Extended/Pro under sandbox billing; every other org currently gets the full plan) — rep × concern heatmap, team deals table.
+- **Forecast** (Pro, same caveat) — weighted pipeline, segment breakdown, top deals at risk, deal aging, stage funnel (see §5 for scoring limits).
 - **Onboarding** — 3-step wizard (Salesforce → Google Workspace → Gong) plus a setup checklist.
 
 ### Data freshness
-Data refreshes **daily** (06:00 UTC). Gmail can push changes sooner, but the deal views update once a day.
+Data refreshes **daily** (06:00 UTC). Gmail can push changes sooner, but the deal views update once a day. Known gap: the activity timeline is not refreshed by the daily run yet (bug report in the product repo).
 
 ---
 
@@ -122,8 +122,8 @@ Data refreshes **daily** (06:00 UTC). Gmail can push changes sooner, but the dea
 | **Salesforce** | **Live** | Opportunities, contacts, contact roles, accounts, users, stage and field history. Read-only — Pretzel never writes to Salesforce. |
 | **Google Workspace (Gmail)** | **Live** | Email with external domains that exist in your CRM, only for mailboxes the admin selects; exclusion rules by address, domain, subject. Read-only. |
 | **Gong** | **Live** (connect flow being fixed) | Calls, transcripts, participants; 3 years of history. |
-| **Google Calendar** | Built, not yet active | Meetings, attendees, accept/decline. |
-| **Granola, Fireflies, Fathom** | Pilot | Meeting metadata + transcripts; imports two years of history. Not yet feeding signals. |
+| **Google Calendar** | Built, not yet active | Synced only if the customer's Google delegation grant includes the calendar scope; no metric or screen uses it yet. |
+| **Granola, Fireflies, Fathom, Read.ai** | Pilot (staging only) | Meeting metadata + transcripts; imports two years of history. Not yet feeding the timeline or signals. |
 | **HubSpot** | Coming soon | — |
 | **Microsoft 365 / Outlook** | Coming soon | — |
 | **Slack** | Vision (alerts) | — |
@@ -149,7 +149,7 @@ Pricing is by **open New Business opportunities**, not seats. **Unlimited users.
 **Self-serve trial: must be true before the CTA goes live**
 1. **Production billing is not live.** Checkout and the trial run in Stripe test mode on staging only. The CTA can't take real signups until production billing ships.
 2. **No production app URL** is defined in the product repo (only `staging-pretzel-labs.vercel.app`). The CTA needs a final sign-up URL.
-3. **Card required** → never write "no credit card required" or "free trial, no strings". The app's sign-in page currently says "Sign up for free"; align both sides.
+3. **Card required** → never write "no credit card required" or "free trial, no strings". The app's sign-in toggle said "Sign up for free"; changed to "Sign up" on staging in PR #27 (not yet on production).
 4. **Who can sign up:** Google sign-in only, work domains only (Gmail/Outlook/Yahoo etc. blocked). Microsoft 365 companies can't sign up yet.
 5. **Who gets value:** Salesforce is required for anything to appear. Say "for Salesforce teams" near the CTA, or expect HubSpot signups that dead-end.
 6. **Expectation gap:** trial users will look for whatever the page promises. Vision items (AI drafts, deal score, alerts) won't be in the app yet — consider a light "Coming soon" tag on those cards, or make sure onboarding sets expectations.
@@ -161,7 +161,7 @@ Pricing is by **open New Business opportunities**, not seats. **Unlimited users.
 ### Safe — say it confidently
 - Every email and call on one deal timeline, captured automatically, with no rep logging.
 - Flags missed follow-ups, unanswered prospect emails, deals going dark, and repeated declined meetings.
-- Configurable thresholds per team.
+- Configurable signal rules for the deal board.
 - Pretzel reads; it never writes to your CRM. Read-only access to Gmail.
 - Only CRM-matched external email is captured; admins choose which mailboxes are included.
 - Priced by deals, not seats — unlimited users.
@@ -226,7 +226,7 @@ AI-drafted follow-ups, deal health score, MEDDICC coverage, multi-threading and 
 2. Publish pricing on the site, or keep it in the app only?
 3. Whether to show "Coming soon" tags on vision cards for trial users.
 4. Launch geography — US-first, or US + Canada + EMEA + Australia? Still undecided in the product docs.
-5. Which recorders to list publicly (Granola / Fireflies / Fathom are in pilot).
+5. Which recorders to list publicly (Granola / Fireflies / Fathom / Read.ai are in a staging pilot).
 
 ---
 

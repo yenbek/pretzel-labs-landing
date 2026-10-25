@@ -209,7 +209,7 @@ These help the brief's goals but add or move elements, so they're listed for a l
 
 1. **Trial URL.** No production sign-up URL exists yet, and billing runs in Stripe test mode on staging only (brief §8). Until then, the "Start trial" buttons have nowhere real to go.
 2. **Privacy and Terms pages** must exist before the footer links are switched.
-3. **Product side:** the app's sign-in page says "Sign up for free" while the trial needs a card. Align it with "Start trial".
+3. **Product side:** the app's sign-in toggle said "Sign up for free" while the trial needs a card. It reads "Sign up" on staging since product PR #27, not yet on production; keep it aligned with "Start trial".
 
 ---
 
