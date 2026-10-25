@@ -23,7 +23,7 @@ Contents: [Page shell](#page-shell) · [Navigation](#navigation) · [Buttons](#b
   …
   <section class="pl-section pl-section--last" id="cta">…CTA card + footer…</section>
 </div>
-<script src="/js/pretzel.js" defer></script>
+<script src="/js/pretzel.js?v=1" defer></script>
 </body>
 ```
 
