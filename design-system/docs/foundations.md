@@ -36,7 +36,7 @@ Two self-hosted variable fonts (`fonts/`), latin subset.
 |---|---|---|
 | Space Grotesk | 600 | All titles, big numbers (`.pl-stat`), step numbers, compare row labels |
 | DM Sans | **500** (base) | All other text |
-| DM Sans | 600 | Buttons, nav links, glass values (`<b>`), tags, ticked claims |
+| DM Sans | 600 | Buttons, nav links, tags, ticked claims (glass values in `<b>` render at the browser's `bolder`, 700, as in production) |
 
 ### Scale
 
@@ -65,7 +65,7 @@ Two self-hosted variable fonts (`fonts/`), latin subset.
 
 ## 3. Spacing and layout
 
-**Ladder:** `6 · 10 · 14 · 20 · 30 · 40 · 70 · 100` px. Every gap and padding on the page comes from this set.
+**Ladder:** `6 · 10 · 14 · 20 · 30 · 40 · 70 · 100` px. Gaps between blocks and section-level padding come from this set. Component internals keep a few production values outside it (2, 4, 8, 12, 16, 18, 22, 24, 28, 36). Those live inside the component classes; don't introduce new ones in page markup.
 
 | What | Value |
 |---|---|
@@ -86,7 +86,7 @@ Two self-hosted variable fonts (`fonts/`), latin subset.
 
 ## 4. Radii
 
-A closed set. Nothing in between.
+A closed set. Nothing in between. (Round discs such as the arrow disc, tick and status dots use `50%`; the burger bars use 2px.)
 
 | Token | px | On |
 |---|---|---|
@@ -114,7 +114,7 @@ There are no ordinary drop shadows on cards. Depth comes from:
 
 ## 6. Motion
 
-One easing curve: **`cubic-bezier(.2, .8, .2, 1)`** (`--pl-ease`).
+One custom easing curve: **`cubic-bezier(.2, .8, .2, 1)`** (`--pl-ease`), used for movement (photo drift, glass lift, menu, bars, hero art). Short colour, filter and ring transitions use the browser default `ease`, as in production.
 
 | What | Duration |
 |---|---|
@@ -128,7 +128,7 @@ One easing curve: **`cubic-bezier(.2, .8, .2, 1)`** (`--pl-ease`).
 | Stepper autoplay | every 4s, stops on click |
 | Background video | half speed, plays forward then backward |
 
-**Rules.** Anything that moves continuously pauses off screen (pretzel.js does this for the edge light) and stops under `prefers-reduced-motion: reduce` (CSS + pretzel.js handle the edge light, transitions, parallax and stepper autoplay). Hover effects never move text, only photos and glass.
+**Rules.** Anything that moves continuously pauses off screen (pretzel.js does this for the edge light) and stops under `prefers-reduced-motion: reduce` (CSS + pretzel.js handle the edge light, transitions, parallax, stepper autoplay and the background video, which stays on its poster). Hover effects never move text, only photos and glass.
 
 ## 7. Imagery: asset catalogue
 
@@ -182,7 +182,7 @@ Only on grey reason tiles (`.pl-reason`). Never in the same block as a 3D render
 |---|---|---|
 | `pretzel-2d.webp` (+ `-460`, `-840`) | 1377×1207 | Big brown pretzel at the bottom of the home hero. **Always with `srcset`/`sizes`**, as in index.html, or phones download 1377px for a 228px box |
 | `cta-hills-cut2.webp` | 1600×538, transparent sky | **Only** the bottom edge of the CTA card, in flow (`.pl-cta__hills`) |
-| `feature-1.mp4` + `feature-1.webp` poster | 1200×960 | Pretzels floating in a teal sky. Tall bento tile only. `preload="none"`, loaded near viewport |
+| `feature-1.mp4` + `feature-1.webp` poster | 624×624 video, 1200×960 poster (both `cover`) | Pretzels floating in a teal sky. Tall bento tile only. `preload="none"`, loaded near viewport |
 
 ### Making new imagery
 
@@ -198,7 +198,7 @@ Two, both `max-width`. They're the only ones.
 | Sections | Top padding 130 → 90 | — |
 | Hero | No `min-height: 100vh`; smaller art | Mobile sky image (`hero-clouds-1250.webp`) |
 | Titles | Step down (see §2) | — |
-| Grids | Bento, stepper, splits → one column | — |
+| Grids | Bento → one column. Stepper, splits and split head are auto-fit grids: still two columns at 1024, one column once the container is narrower than ~820 / 770 / 730px | — |
 | Absolute decor | Tilted glass and the stepper panel go static | — |
 | Pins / eyebrow art | 160 → 96px (behind text, 90% opacity) / 216 → 120px | — |
 | Buttons | — | Button pairs full width, equal |
@@ -224,4 +224,4 @@ Production: FCP 124 ms desktop, LCP 1.4 s on slow 4G, 12 requests, 0 cross-origi
 - Focus: `:focus-visible` shows a 2px orange outline (global). Don't remove it.
 - Decorative images (renders, icons, hills, hero art) get `alt=""`. The logo image gets `alt="Pretzel Labs"`.
 - The burger keeps `aria-expanded`/`aria-label` in sync. The stepper uses `role="tablist"`/`tab`/`tabpanel` with `aria-selected`.
-- Body text contrast: ink on white 16.9:1, muted on white 7.3:1, muted on surface 6.4:1. The orange (`#f64c26` on white, 3.5:1) is for large or bold text only: titles' italic phrase, 600-weight links and tags. Never use it for body copy. Derived chips use darker shades of each hue for their 13px text (all ≥4.8:1).
+- Body text contrast: ink on white 16.9:1, muted on white 7.3:1, muted on surface 6.4:1. The orange (`#f64c26` on white, 3.5:1) passes AA only for large text (≥24px, or ≥18.7px bold): the hero title's italic phrase. The 14–16px orange "Learn more" links and glass tags fall short (3.5:1 < 4.5:1). That is inherited from production; don't spread it to body copy or new small text. Derived chips use darker shades of each hue for their 13px text (≥4.6:1 on white and on `--pl-surface`).

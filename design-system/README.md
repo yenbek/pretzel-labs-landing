@@ -5,7 +5,7 @@ This folder is a self-contained static site and the design system behind it. Use
 - **run the Pretzel Labs landing page as the site's home page** (`index.html`), and
 - **build more pages** that look like the same designer made them, from the same components, assets and wording.
 
-Everything here was taken from the production home page (`../dist/index.html`). `index.html` in this folder rebuilds that page with the classes in `css/pretzel.css`. It was checked against production on 2026-10-24: **zero differing pixels** in full-page screenshots at 1440, 1024, 768, 640, 390 and 360 px, with identical page heights.
+Everything here was taken from the production home page (`../dist/index.html`). `index.html` in this folder rebuilds that page with the classes in `css/pretzel.css`. It was checked against production on 2026-10-24 and re-checked on 2026-10-25: full-page headless-Chrome screenshots at 1440, 1024, 768, 640, 390 and 360 px have identical page heights and no pixel differing by more than 24/255 on any channel (the few that differ at all are anti-aliasing on button edges). That holds with reduced motion on or off and with the fluted-glass shader on or off.
 
 **For agents, reading order:** this file → `docs/components.md` → `docs/content/voice-and-copy.md`. Open `components.html` in a browser to see every component. Read the other docs when a task touches them.
 
@@ -21,7 +21,7 @@ components.html          living gallery of every component, foundation and compo
 css/pretzel.css          THE stylesheet: tokens, base, components, responsive rules. One file.
 js/pretzel.js            all behaviour (menu, stepper, video, parallax, edge light). Opt-in by markup.
 js/fluted-glass.js       optional WebGL "fluted glass" shader, lazy-loaded by pretzel.js
-tokens.json              the same tokens in W3C Design Tokens format, for tools
+tokens.json              the same tokens, W3C Design Tokens style ($type/$value); composite values (shadows, gradients, clamp sizes) are CSS strings, so strict DTCG tools will reject them
 assets/                  every image and video the site uses (catalogue: docs/foundations.md §7)
 fonts/                   DM Sans + Space Grotesk, variable woff2, self-hosted
 vercel.json              clean URLs + cache headers;  .vercelignore keeps docs/templates off the live site
@@ -43,7 +43,7 @@ Pages use root-absolute paths (`/css/…`, `/assets/…`, `/#how`), so serve thi
 ```bash
 npx serve design-system            # http://localhost:3000, clean URLs like /pricing → pricing.html
 # or
-python3 -m http.server 4391 --directory design-system   # use /pricing.html instead of /pricing
+python3 -m http.server 4391 --directory design-system   # use /pricing.html instead of /pricing; no Range support, so the video loops instead of ping-ponging
 ```
 
 Deploy: `npx vercel deploy design-system --prod`. `vercel.json` turns on clean URLs, sets immutable caching for `assets/` and `fonts/`, and makes `css/`/`js/` revalidate.
@@ -73,7 +73,7 @@ Break any of these and the page stops looking like the home page.
 4. **Orange is scarce.** One primary (orange) button per screen. Secondary actions use the dark button or the ghost button. Three button kinds exist; don't make a fourth.
 5. **Button pairs sit in halos** (`.pl-btn-halo`), both of them, with labels of 2–3 words.
 6. **Glass only on photos.** `.pl-glass` panels always sit over a sky photo inside a ringed card. On white they look dirty.
-7. **Closed sets.** Radii: 100 / 56 / 30 / 24 / 20 / 14. Spacing: 6 · 10 · 14 · 20 · 30 · 40 · 70 · 100. Colours: the tokens. No in-between values, no new colours.
+7. **Closed sets.** Radii: 100 / 56 / 30 / 24 / 20 / 14 (plus 50% for discs). Spacing between blocks: 6 · 10 · 14 · 20 · 30 · 40 · 70 · 100. Component internals use a few more values taken from production (8, 12, 16, 22, 24, 28…); reuse a component's value rather than inventing one. Colours: the tokens. No new colours.
 8. **Two breakpoints: 1024 and 640** (max-width). Don't add others.
 9. **No fixed heights** on content containers. Use `min-height`. Fixed heights clipped content on phones in the original export.
 10. **Grids use `.pl-grid`** (`minmax(min(var(--min), 100%), 1fr)`). A bare `minmax(320px, 1fr)` overflows on 375px phones.
@@ -116,7 +116,7 @@ These are faithful to the live page on purpose. Fix them deliberately, not by ac
 - There's no meta description, OG tags or favicon on the home page yet.
 - On phones the compare table hides its column header, so "without / with" is carried only by cell styling.
 
-The only differences from production are invisible: the manager section got `id="managers"` and the footer's "Sales managers" link now points at it; internal links are root-absolute (`/#how`); the stepper has tab ARIA and respects reduced motion; the background video is muted so autoplay is allowed.
+The differences from production don't show in a static screenshot: the manager section got `id="managers"` and the footer's "Sales managers" link now points at it; internal links are root-absolute (`/#how`); the stepper has tab ARIA with arrow-key navigation, and no autoplay under reduced motion; the background video is muted (iOS needs that to autoplay) and isn't loaded under reduced motion. One hover differs: on `.pl-zoom` cards the live glass panel's shadow deepens (`--pl-glass-lift`). Production has the same rule, but its inline `box-shadow` overrides it, so only the scale-up shows there.
 
 ## Relationship to the rest of the repo
 
