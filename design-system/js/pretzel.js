@@ -11,6 +11,11 @@
 (function () {
   'use strict';
 
+  // css/ and js/ are cached as immutable; pages link them with ?v=N (README → Changing CSS or JS).
+  // Modules this script loads reuse that query so they change with it.
+  var VERSION = (document.currentScript && document.currentScript.src.split('?')[1]) || '';
+  function versioned(path) { return VERSION ? path + '?' + VERSION : path; }
+
   function onSeen(el, cb, margin) {
     if (!('IntersectionObserver' in window)) { cb(el); return; }
     var o = new IntersectionObserver(function (entries) {
@@ -109,7 +114,7 @@
   // --- fluted-glass shader: the library (~122 KB from esm.sh) loads only when a host is near ---
   [].slice.call(document.querySelectorAll('[data-pl-glass]')).forEach(function (host) {
     onSeen(host, function () {
-      import('./fluted-glass.js').then(function (m) {
+      import(versioned('./fluted-glass.js')).then(function (m) {
         m.mountFlutedGlass(host, host.getAttribute('data-pl-glass'));
       }).catch(function () {});
     }, '300px');

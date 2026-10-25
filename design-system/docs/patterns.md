@@ -104,7 +104,7 @@ No team photos, customer logos or testimonials unless real and approved (`produc
 <link rel="preload" as="font" type="font/woff2" href="/fonts/spacegrotesk-V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2" crossorigin>
 <link rel="preload" as="image" href="/assets/hero-clouds-1250.webp" media="(max-width:640px)" fetchpriority="high">
 <link rel="preload" as="image" href="/assets/hero-clouds.jpg" media="(min-width:641px)" fetchpriority="high">
-<link rel="stylesheet" href="/css/pretzel.css">
+<link rel="stylesheet" href="/css/pretzel.css?v=1">
 <link rel="icon" href="/assets/eyebrow/7-64.webp" type="image/webp">
 ```
 

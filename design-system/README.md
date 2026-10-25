@@ -24,7 +24,7 @@ js/fluted-glass.js       optional WebGL "fluted glass" shader, lazy-loaded by pr
 tokens.json              the same tokens, W3C Design Tokens style ($type/$value); composite values (shadows, gradients, clamp sizes) are CSS strings, so strict DTCG tools will reject them
 assets/                  every image and video the site uses (catalogue: docs/foundations.md §7)
 fonts/                   DM Sans + Space Grotesk, variable woff2, self-hosted
-vercel.json              clean URLs + cache headers;  .vercelignore keeps docs/templates off the live site
+vercel.json              clean URLs + cache headers (css/js immutable, versioned by ?v=N);  .vercelignore keeps docs/templates off the live site
 docs/
   foundations.md         colour, type, spacing, radii, elevation, motion, breakpoints, imagery
   components.md          every component: markup, variants, knobs, rules, mobile behaviour
@@ -46,7 +46,19 @@ npx serve design-system            # http://localhost:3000, clean URLs like /pri
 python3 -m http.server 4391 --directory design-system   # use /pricing.html instead of /pricing; no Range support, so the video loops instead of ping-ponging
 ```
 
-Deploy: `npx vercel deploy design-system --prod`. `vercel.json` turns on clean URLs, sets immutable caching for `assets/` and `fonts/`, and makes `css/`/`js/` revalidate.
+Deploy: `npx vercel deploy design-system --prod`. `vercel.json` turns on clean URLs, caches `assets/`, `fonts/`, `css/` and `js/` for a year as immutable, and makes HTML revalidate on every view.
+
+### Changing CSS or JS
+
+Every page links `/css/pretzel.css?v=N` and `/js/pretzel.js?v=N` with the same `N`, and `pretzel.js` passes it on to `fluted-glass.js`. Browsers keep these files for a year without asking the server, so the stylesheet loads once and every later page renders from cache. The price: **a change to anything in `css/` or `js/` must ship with a new `N` in every page**, or returning visitors keep the old file for up to a year. HTML always revalidates, so a bumped `N` reaches everyone on their next page view.
+
+```bash
+cd design-system
+perl -pi -e 's/\?v=\d+"/?v=2"/g' *.html                # bump: replace 2 with the current N + 1
+grep -oh 'pretzel\.\(css\|js\)?v=[0-9]*' *.html | sort | uniq -c   # check: one css and one js line, same N, count = number of pages
+```
+
+Never rename `pretzel.css`/`pretzel.js` or link them without `?v=`.
 
 ---
 
@@ -105,6 +117,7 @@ Break any of these and the page stops looking like the home page.
 - [ ] Every claim passes the red-line list (`product-brief.md` §9). Demo data uses pastry names
 - [ ] `<title>` and `<meta name="description">` set
 - [ ] Checked with `prefers-reduced-motion: reduce`
+- [ ] Links `/css/pretzel.css?v=N` and `/js/pretzel.js?v=N` with the current `N`; if this change touched `css/` or `js/`, `N` was bumped in every page
 
 ## Known gaps carried over from production
 
