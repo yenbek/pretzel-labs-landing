@@ -1,0 +1,6 @@
+# Documentation and templates stay in the repo, not on the live site.
+README.md
+docs
+tokens.json
+_*.html
+components.html

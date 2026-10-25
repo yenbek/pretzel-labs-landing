@@ -1,0 +1,627 @@
+/* ==========================================================================
+   Pretzel Labs — design system stylesheet
+   --------------------------------------------------------------------------
+   One file: tokens, base, layout, components, responsive rules.
+   Every value is taken from the production home page (dist/index.html),
+   which index.html in this folder reproduces using these classes.
+
+   Sections
+     0. fonts
+     1. tokens
+     2. base
+     3. layout            .pl-page .pl-section .pl-container .pl-stack .pl-grid
+     4. typography        .pl-h-xl … .pl-h-xs .pl-lead .pl-lead-sm .pl-muted
+     5. buttons & links   .pl-btn .pl-btn-halo .pl-btn-row .pl-link-cta
+     6. navigation        .pl-navbar .pl-nav .pl-burger .pl-navmenu
+     7. hero              .pl-hero .pl-checks .pl-tick
+     8. section heads     .pl-split-head .pl-pin-head .pl-eyebrow-art .pl-pin
+     9. surfaces          .pl-ring .pl-zoom .pl-media .pl-scrim
+    10. glass & data viz  .pl-glass .pl-kv .pl-bar .pl-stat .pl-dotlist .pl-tag
+    11. bento             .pl-bento .pl-tile .pl-tilt
+    12. reason tiles      .pl-reason .pl-icon
+    13. stepper           .pl-stepper .pl-pill
+    14. split feature     .pl-split .pl-media-card
+    15. compare table     .pl-compare
+    16. CTA card          .pl-cta
+    17. footer            .pl-footer
+    18. derived (not on the home page; built from the same tokens)
+                          .pl-hero--page .pl-prose .pl-card .pl-chip
+    19. responsive        ≤1024px and ≤640px — the only two breakpoints
+   ========================================================================== */
+
+
+/* ---------- 0. fonts (self-hosted variable woff2, latin subset) ---------- */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(../fonts/dmsans-rP2Hp2ywxg089UriCZOIHTWEBlw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url(../fonts/spacegrotesk-V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+/* ---------- 1. tokens ---------------------------------------------------- */
+:root {
+  /* colour */
+  --pl-ink:          #1d1d1d;   /* headings, body text */
+  --pl-muted:        #4d585f;   /* secondary text, nav links, captions */
+  --pl-accent:       #f64c26;   /* the orange: links, progress, italic in the hero title */
+  --pl-accent-hi:    #ff6a45;   /* ONLY the light end of the primary button gradient */
+  --pl-surface:      #edf1f4;   /* grey cards, hover fills */
+  --pl-surface-hi:   #e3e9ef;   /* burger hover — one step darker than surface */
+  --pl-sky:          #cfe3f7;   /* flat sky under a photo card while it loads */
+  --pl-paper:        #ffffff;
+  --pl-ok:           #10b981;   /* on track / commit */
+  --pl-warn:         #ff8b06;   /* needs attention */
+  --pl-risk:         #f51c23;   /* at risk (derived chips only) */
+  --pl-track:        rgba(29, 29, 29, .08);   /* empty part of a progress bar */
+
+  /* the 4px ring — the signature of the site */
+  --pl-ring:         0 0 0 4px rgba(221, 229, 237, .7);
+  --pl-ring-hover:   0 0 0 4px rgba(246, 76, 38, .55);
+
+  /* frosted glass */
+  --pl-glass-bg:     rgba(255, 255, 255, .55);
+  --pl-glass-border: rgba(255, 255, 255, .7);
+  --pl-glass-blur:   14px;
+  --pl-glass-shadow: 0 8px 30px rgba(29, 29, 29, .08);
+  --pl-glass-lift:   0 16px 40px rgba(29, 29, 29, .14);
+
+  /* button chrome */
+  --pl-btn-bevel:    inset 4px 4px 8px rgba(255, 255, 255, .3), inset -4px -4px 8px rgba(255, 255, 255, .3);
+  --pl-grad-primary: linear-gradient(110deg, var(--pl-accent-hi) 0%, var(--pl-accent) 100%);
+  --pl-grad-dark:    linear-gradient(110deg, #323232 0%, #000 100%);
+
+  /* radii — a closed set, nothing in between */
+  --pl-r-pill: 100px;   /* buttons, pills, bars, nav links */
+  --pl-r-nav:   56px;   /* the nav capsule */
+  --pl-r-xl:    30px;   /* big cards: reason tiles, stepper, split media, CTA */
+  --pl-r-lg:    24px;   /* glass panels, mobile nav menu */
+  --pl-r-md:    20px;   /* bento tiles, compare rows */
+  --pl-r-sm:    14px;   /* inset cells (compare "with" column) */
+
+  /* type */
+  --pl-font-display: 'Space Grotesk', sans-serif;
+  --pl-font-text:    'DM Sans', sans-serif;
+
+  /* layout */
+  --pl-container: 1200px;
+  --pl-gutter:      30px;
+  --pl-section-top: 130px;   /* 90px at ≤1024 */
+
+  /* motion */
+  --pl-ease: cubic-bezier(.2, .8, .2, 1);   /* the only easing curve on the site */
+  --pl-fast: .2s;
+}
+
+
+/* Layout knobs. Set them on the element that uses them (inline style is fine):
+   style="--gap:22px". They do NOT inherit, so a knob on a grid never leaks into
+   the cards inside it. */
+@property --gap { syntax: '*'; inherits: false; }
+@property --min { syntax: '*'; inherits: false; }
+
+
+/* ---------- 2. base ------------------------------------------------------ */
+html, body {
+  margin: 0; padding: 0;
+  background: var(--pl-paper); color: var(--pl-ink);
+  font-family: var(--pl-font-text); font-weight: 500; font-size: 16px; line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
+a { color: var(--pl-muted); text-decoration: none; }
+a:hover { color: var(--pl-ink); }
+h1, h2, h3, h4, p { margin: 0; }
+:focus-visible { outline: 2px solid var(--pl-accent); outline-offset: 3px; }
+
+.pl-sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+
+/* ---------- 3. layout ---------------------------------------------------- */
+/* wraps the whole page; clips sideways overflow from decorative art */
+.pl-page { width: 100%; overflow-x: clip; position: relative; }
+
+.pl-section       { padding: var(--pl-section-top) var(--pl-gutter) 0; }
+.pl-section--last { padding-bottom: 100px; }
+
+.pl-container { max-width: var(--pl-container); margin: 0 auto; }
+
+/* vertical rhythm inside a section: head → body is 70px; CTA → footer is 100px */
+.pl-stack { display: flex; flex-direction: column; gap: var(--gap, 70px); }
+
+/* auto-fitting columns. min() matters: a bare minmax(320px, 1fr) is a hard floor
+   that overflows narrow cards. Knobs: --min (column floor), --gap. */
+.pl-grid {
+  display: grid; gap: var(--gap, 30px);
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--min, 320px), 100%), 1fr));
+}
+
+
+/* ---------- 4. typography ------------------------------------------------ */
+.pl-h-xl, .pl-h-lg, .pl-h-md, .pl-h-sm, .pl-h-xs {
+  font-family: var(--pl-font-display); font-weight: 600;
+}
+/* hero title — exactly one per site page */
+.pl-h-xl { font-size: clamp(52px, 7vw, 100px); line-height: 1; letter-spacing: -1.4px; max-width: 1000px; text-wrap: balance; }
+/* large section title (Features, CTA) */
+.pl-h-lg { font-size: clamp(40px, 5vw, 64px); line-height: 1.05; letter-spacing: -1.5px; max-width: 640px; text-wrap: balance; }
+/* standard section title */
+.pl-h-md { font-size: clamp(34px, 4vw, 48px); line-height: 1.2; letter-spacing: -1px; }
+/* card / tile / step title */
+.pl-h-sm { font-size: 28px; line-height: 1.2; letter-spacing: -.5px; }
+/* row label (compare table) */
+.pl-h-xs { font-size: 20px; line-height: 1.2; }
+
+/* italic is the emphasis device: one phrase per title. Orange only in the hero title. */
+.pl-h-xl em { font-style: italic; font-weight: 600; color: var(--pl-accent); }
+
+.pl-lead    { font-size: 20px; line-height: 26px; max-width: 600px; text-wrap: pretty; }
+.pl-lead-sm { font-size: 18px; color: var(--pl-muted); text-wrap: pretty; }
+.pl-caption { font-size: 14px; line-height: 1.4; color: var(--pl-muted); text-wrap: pretty; max-width: 320px; }
+.pl-muted   { color: var(--pl-muted); }
+.pl-pretty  { text-wrap: pretty; }
+
+
+/* ---------- 5. buttons & links ------------------------------------------- */
+/* Three kinds only: primary (orange), dark, ghost. Inner pill is always 48px
+   tall (38px for the nav's --sm). Pairs sit in .pl-btn-halo so they match. */
+.pl-btn {
+  display: inline-flex; align-items: center; border: 0; cursor: pointer;
+  border-radius: var(--pl-r-pill); font-family: inherit; font-weight: 600; text-decoration: none;
+  transition: filter var(--pl-fast), background var(--pl-fast);
+}
+.pl-btn--primary, .pl-btn--dark { gap: 14px; padding: 12px 12px 12px 30px; font-size: 18px; color: #fff; }
+.pl-btn--primary { background: var(--pl-grad-primary); box-shadow: var(--pl-btn-bevel), 0 8px 16px rgba(246, 76, 38, .45); }
+.pl-btn--dark    { background: var(--pl-grad-dark);    box-shadow: var(--pl-btn-bevel), 0 8px 16px rgba(29, 29, 29, .5); }
+.pl-btn--ghost   { justify-content: center; height: 48px; padding: 0 40px; background: #fff; color: var(--pl-ink); font-size: 18px; }
+
+.pl-btn--primary:hover, .pl-btn-halo:hover > .pl-btn--primary { filter: brightness(1.08); }
+.pl-btn--dark:hover,    .pl-btn-halo:hover > .pl-btn--dark    { filter: brightness(1.25); }
+.pl-btn--ghost:hover,   .pl-btn-halo:hover > .pl-btn--ghost   { background: var(--pl-surface); }
+
+/* nav size: dark only */
+.pl-btn--sm { display: flex; gap: 10px; height: 38px; padding: 10px 10px 10px 24px; font-size: 14px; box-shadow: var(--pl-btn-bevel), 0 4px 16px rgba(29, 29, 29, .5); }
+.pl-btn--sm:hover { color: #fff; }
+.pl-btn--primary:hover, .pl-btn--dark:hover { color: #fff; }
+
+/* the white disc with → that rides inside primary and dark buttons */
+.pl-btn__arrow {
+  width: 24px; height: 24px; border-radius: 50%; background: #fff; color: var(--pl-accent);
+  display: inline-flex; align-items: center; justify-content: center; font-size: 14px;
+}
+.pl-btn--dark .pl-btn__arrow { color: var(--pl-ink); }
+.pl-btn--sm .pl-btn__arrow   { width: 22px; height: 22px; font-size: 13px; }
+
+/* 6px translucent ring around a button. The <a> is the halo; the pill is a <span> inside. */
+.pl-btn-halo {
+  display: inline-flex; padding: 6px; border-radius: var(--pl-r-pill);
+  background: rgba(255, 255, 255, .1);
+  -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
+}
+.pl-btn-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+/* "Learn more →": padding + equal negative margin grows the target, text stays put */
+.pl-link-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; margin: -8px -14px; border-radius: var(--pl-r-pill);
+  position: relative; align-self: center;
+  font-size: 14px; font-weight: 600; color: var(--pl-accent);
+  transition: background var(--pl-fast), color var(--pl-fast);
+}
+.pl-link-cta:hover { background: rgba(246, 76, 38, .1); color: var(--pl-accent); }
+/* 16px version used under split-section copy; turns ink on hover */
+.pl-link-cta--lg { font-size: 16px; align-self: flex-start; }
+.pl-link-cta--lg:hover { color: var(--pl-ink); }
+
+
+/* ---------- 6. navigation (identical on every page) ---------------------- */
+.pl-navbar {
+  position: fixed; top: 20px; left: 0; right: 0; z-index: 50;
+  display: flex; justify-content: center; padding: 0 var(--pl-gutter); pointer-events: none;
+}
+.pl-nav {
+  pointer-events: auto; position: relative;
+  width: 100%; max-width: 800px; height: 58px; padding: 10px;
+  border-radius: var(--pl-r-nav); background: #fff; box-shadow: var(--pl-ring);
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
+.pl-nav__logo { display: flex; align-items: center; gap: 8px; padding-left: 6px; color: var(--pl-ink); font-weight: 600; font-size: 17px; }
+.pl-nav__logo:hover { color: var(--pl-ink); }
+.pl-nav__logo img { width: 32px; height: 32px; object-fit: contain; display: block; }
+.pl-nav__links { display: flex; gap: 2px; }
+.pl-nav__links a { padding: 8px 16px; border-radius: var(--pl-r-pill); font-size: 16px; font-weight: 600; color: var(--pl-muted); }
+.pl-nav__links a:hover, .pl-nav__links a[aria-current="page"] { background: var(--pl-surface); color: var(--pl-ink); }
+
+.pl-burger {
+  display: none; flex: 0 0 auto; width: 38px; height: 38px; padding: 0; border: 0;
+  border-radius: var(--pl-r-pill); background: var(--pl-surface); cursor: pointer;
+  align-items: center; justify-content: center; flex-direction: column; gap: 4px;
+  transition: background var(--pl-fast);
+}
+.pl-burger:hover { background: var(--pl-surface-hi); }
+.pl-burger span { display: block; width: 16px; height: 2px; border-radius: 2px; background: var(--pl-ink); transition: transform .25s var(--pl-ease), opacity var(--pl-fast); }
+.pl-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.pl-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.pl-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.pl-navmenu { display: none; }
+.pl-navmenu a { display: block; padding: 12px 18px; border-radius: var(--pl-r-pill); font-size: 16px; font-weight: 600; color: var(--pl-muted); transition: background var(--pl-fast), color var(--pl-fast); }
+.pl-navmenu a:hover, .pl-navmenu a[aria-current="page"] { background: var(--pl-surface); color: var(--pl-ink); }
+
+
+/* ---------- 7. hero ------------------------------------------------------ */
+.pl-hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  padding: 194px var(--pl-gutter) 0; min-height: 100vh;
+  background: url(../assets/hero-clouds.jpg) center / cover;
+}
+/* 8% white veil over the sky */
+.pl-hero::before { content: ""; position: absolute; inset: 0; background: rgba(255, 255, 255, .08); pointer-events: none; z-index: 0; }
+/* the fade that dissolves the sky into the white page */
+.pl-hero::after {
+  content: ""; position: absolute; inset: auto 0 0; height: 30%; pointer-events: none; z-index: 3;
+  background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .7) 50%, #fff 100%);
+}
+.pl-hero__content {
+  position: relative; z-index: 4; max-width: var(--pl-container); margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 30px;
+}
+/* reserves room for the art, which is absolutely positioned */
+.pl-hero__spacer { height: clamp(300px, 40vw, 560px); }
+.pl-hero__art { position: absolute; left: 0; right: 0; bottom: -6%; height: min(46vw, 640px); pointer-events: none; z-index: 1; overflow: visible; }
+.pl-hero__float {
+  position: absolute; inset: 0 0 auto; height: 100%; width: 100%;
+  display: flex; align-items: center; justify-content: center; z-index: 1;
+  will-change: transform; transition: transform .6s var(--pl-ease);
+}
+.pl-hero__float img { height: 100%; width: auto; max-width: 100%; object-fit: contain; display: block; filter: drop-shadow(0 30px 40px rgba(60, 30, 10, .25)); }
+
+/* row of ticked claims under the hero buttons */
+.pl-checks { display: flex; gap: 36px; flex-wrap: wrap; justify-content: center; color: var(--pl-ink); font-size: 16px; font-weight: 600; }
+.pl-checks > span { display: flex; align-items: center; gap: 6px; }
+/* the glyph is an inline SVG — a text ✓ sits visibly high in the disc */
+.pl-tick {
+  width: 18px; height: 18px; border-radius: 50%; flex: 0 0 auto;
+  background: var(--pl-ink); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+
+
+/* ---------- 8. section heads --------------------------------------------- */
+/* 3D pretzel above a section title: 216px, 120px at ≤1024 */
+.pl-eyebrow-art { width: 216px; height: 216px; object-fit: contain; display: block; margin-bottom: 6px; }
+
+/* title (+ art) on the left, lead + button on the right, bottoms aligned */
+.pl-split-head { align-items: end; }
+.pl-split-head__main  { display: flex; flex-direction: column; gap: 20px; }
+.pl-split-head__aside { display: flex; flex-direction: column; align-items: flex-end; gap: 30px; text-align: right; }
+
+/* title on the left, a 160px pretzel "pinned" to the right edge */
+.pl-pin-head { position: relative; display: flex; flex-direction: column; gap: var(--gap, 10px); }
+.pl-pin { position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 160px; height: 160px; object-fit: contain; display: block; }
+
+
+/* ---------- 9. surfaces -------------------------------------------------- */
+/* the 4px ring; turns orange on hover. Put it on every card-like container. */
+.pl-ring { box-shadow: var(--pl-ring); transition: box-shadow .3s; }
+.pl-ring:hover { box-shadow: var(--pl-ring-hover); }
+
+/* photo / video layer filling a card. Set background-image inline. */
+.pl-media { position: absolute; inset: 0; overflow: hidden; background-position: center; background-size: cover; }
+video.pl-media { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* white gradients over the photo so dark-on-light text stays legible */
+.pl-scrim { position: absolute; inset: 0; }
+.pl-scrim--frame  { background: linear-gradient(rgba(255,255,255,.6) 0%, rgba(255,255,255,0) 35%, rgba(255,255,255,0) 60%, rgba(255,255,255,.85) 100%); }
+.pl-scrim--strong { background: linear-gradient(rgba(255,255,255,.8) 0%, rgba(255,255,255,0) 30%, rgba(255,255,255,0) 65%, rgba(255,255,255,.85) 100%); }
+.pl-scrim--top    { background: linear-gradient(rgba(255,255,255,.7) 0%, rgba(255,255,255,0) 45%); }
+
+/* hover: photo drifts in slowly, live glass lifts. Add to the card. */
+.pl-zoom .pl-media { transition: transform .8s var(--pl-ease); will-change: transform; }
+.pl-zoom:hover .pl-media { transform: scale(1.06) translate(-1.5%, -1%); }
+
+
+/* ---------- 10. glass & data viz ------------------------------------------ */
+/* frosted "UI screenshot" panel. Always on top of a photo, never on white. */
+.pl-glass {
+  position: relative; display: flex; flex-direction: column; gap: var(--gap, 14px);
+  padding: 24px; border-radius: var(--pl-r-lg); color: var(--pl-ink);
+  background: var(--pl-glass-bg);
+  -webkit-backdrop-filter: blur(var(--pl-glass-blur)); backdrop-filter: blur(var(--pl-glass-blur));
+  border: 1px solid var(--pl-glass-border); box-shadow: var(--pl-glass-shadow);
+}
+.pl-glass--spread { justify-content: space-between; }
+/* 28px padding, 380px max — the panel inside split-section and stepper cards */
+.pl-glass--lg { padding: 28px; --gap: 22px; width: 100%; max-width: 380px; }
+
+/* "live" glass: lifts with its card's hover and carries the travelling edge light.
+   js/pretzel.js adds .is-live while it is on screen so the animation pauses off screen. */
+.pl-glass--live { transition: transform .5s var(--pl-ease), box-shadow .5s; will-change: transform; }
+.pl-zoom:hover .pl-glass--live { transform: scale(1.03); box-shadow: var(--pl-glass-lift); }
+@property --pl-edge { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+.pl-glass--live::after {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none; opacity: .7;
+  background: conic-gradient(from var(--pl-edge) at 50% 50%,
+    rgba(255,255,255,0) 0deg, rgba(255,255,255,0) 190deg, rgba(255,255,255,1) 250deg,
+    rgba(255,255,255,0) 310deg, rgba(255,255,255,0) 360deg);
+  -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+          mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: pl-edge-sweep 9s linear infinite; animation-play-state: paused;
+}
+.pl-glass--live.is-live::after { animation-play-state: running; }
+@keyframes pl-edge-sweep { to { --pl-edge: 360deg; } }
+
+/* label ←→ value row. 13px by default, --14 inside .pl-glass--lg */
+.pl-kv { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; }
+.pl-kv--14 { font-size: 14px; }
+.pl-kv > span { color: var(--pl-muted); }
+.pl-tag, .pl-kv > .pl-tag { color: var(--pl-accent); font-weight: 600; }
+.pl-label { font-size: 13px; color: var(--pl-muted); }
+
+/* list of kv rows / bars with a fixed gap */
+.pl-rows { display: flex; flex-direction: column; gap: var(--gap, 8px); }
+
+/* big number. The unit goes in <small>. */
+.pl-stat { font-family: var(--pl-font-display); font-weight: 600; font-size: 56px; line-height: 1; letter-spacing: -2px; }
+.pl-stat small { font-size: 20px; color: var(--pl-muted); letter-spacing: 0; }
+.pl-stat--md { font-size: 36px; line-height: 1.05; letter-spacing: -1.5px; text-wrap: balance; min-height: 76px; display: flex; align-items: center; }
+
+/* progress bar: <div class="pl-bar"><i style="width:50%"></i></div> */
+.pl-bar { height: 5px; border-radius: var(--pl-r-pill); background: var(--pl-track); }
+.pl-bar--6 { height: 6px; }
+.pl-bar > i { display: block; height: 100%; border-radius: var(--pl-r-pill); background: var(--pl-accent); transition: width .5s var(--pl-ease); }
+.pl-bar > i.is-ink { background: var(--pl-ink); }
+.pl-bar > i.is-ok  { background: var(--pl-ok); }
+
+/* status dot list (manager panel) */
+.pl-dotlist { display: flex; flex-direction: column; gap: 14px; }
+.pl-dotlist > div { display: flex; align-items: center; gap: 14px; font-size: 14px; }
+.pl-dotlist > div > span:nth-child(2) { flex: 1 1 0%; }
+.pl-dot { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; background: var(--pl-accent); }
+.pl-dot.is-warn { background: var(--pl-warn); }
+.pl-dot.is-ink  { background: var(--pl-ink); }
+.pl-dot.is-ok   { background: var(--pl-ok); }
+
+
+/* ---------- 11. bento ---------------------------------------------------- */
+.pl-bento { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: 400px 370px; gap: 30px; }
+.pl-bento__tall { grid-row: span 2; }
+.pl-bento__wide { grid-column: span 2; }
+
+/* bento card. Children other than media/scrim sit above the photo. */
+.pl-tile {
+  position: relative; overflow: hidden; display: flex; flex-direction: column; gap: var(--gap, 14px);
+  padding: 30px; border-radius: var(--pl-r-md); background: var(--pl-surface); color: var(--pl-ink);
+}
+.pl-tile > :not(.pl-media):not(.pl-scrim) { position: relative; }
+.pl-tile--sky    { background: var(--pl-sky); }
+.pl-tile--spread { justify-content: space-between; }
+.pl-tile--roomy  { padding: 40px; --gap: 30px; }
+.pl-tile--center { align-items: center; text-align: center; --gap: 6px; }
+.pl-tile .pl-h-sm { text-align: center; }
+.pl-tile__foot { display: flex; flex-direction: column; gap: 6px; }
+.pl-tile__foot > .pl-caption, .pl-tile--center > .pl-caption { align-self: center; text-align: center; }
+.pl-fill { flex: 1 1 0%; min-height: 0; }
+
+/* tilted glass cards composed inside a wide tile; they stack flat at ≤1024 */
+.pl-tilt-wrap { position: relative; flex: 1 1 0%; width: 100%; margin-top: 10px; }
+.pl-tilt { position: absolute; --gap: 18px; justify-content: flex-start; }
+
+
+/* ---------- 12. reason tiles --------------------------------------------- */
+.pl-reason {
+  position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; gap: 30px;
+  min-height: 320px; padding: 30px; border-radius: var(--pl-r-xl); background: var(--pl-surface);
+}
+.pl-reason > * { position: relative; z-index: 2; }
+.pl-reason__body { display: flex; flex-direction: column; gap: 6px; }
+.pl-reason__body p { color: var(--pl-muted); }
+/* orange line-art icon, 56px. Never mix with the 3D renders in one block. */
+.pl-icon { width: 56px; height: 56px; object-fit: contain; align-self: flex-start; }
+
+
+/* ---------- 13. stepper -------------------------------------------------- */
+.pl-stepper {
+  position: relative; overflow: hidden; padding: 40px; border-radius: var(--pl-r-xl);
+  --min: 320px; --gap: 40px; align-items: center; min-height: 520px;
+}
+.pl-stepper__main { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: 100%; }
+.pl-stepper__pills { display: flex; gap: 10px; flex-wrap: wrap; }
+.pl-stepper__copy { display: flex; flex-direction: column; gap: 14px; }
+.pl-stepper__num { font-family: var(--pl-font-display); font-weight: 600; font-size: 64px; line-height: 1; letter-spacing: -2px; color: var(--pl-accent); }
+.pl-stepper__copy p { text-wrap: pretty; max-width: 420px; }
+/* panel sits in the empty second column on desktop; in flow at ≤1024 */
+.pl-stepper__panel { position: absolute; right: 40px; bottom: 40px; width: 380px; max-width: calc(100% - 80px); }
+.pl-stepper__panel .pl-glass { width: 100%; height: 220px; padding: 28px; --gap: 16px; justify-content: space-between; }
+
+/* selectable pill */
+.pl-pill {
+  border: 0; cursor: pointer; font: inherit; font-weight: 500; font-size: 14px;
+  padding: 10px 20px; border-radius: var(--pl-r-pill); color: var(--pl-ink);
+  background: rgba(255, 255, 255, .7); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  transition: background var(--pl-fast), color var(--pl-fast), transform var(--pl-fast);
+}
+.pl-pill[aria-selected="true"] { background: var(--pl-ink); color: #fff; -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+
+/* ---------- 14. split feature -------------------------------------------- */
+/* copy on one side, a photo card with a glass panel on the other */
+.pl-split { --gap: 70px; align-items: center; }
+.pl-split__text { display: flex; flex-direction: column; gap: 20px; }
+.pl-split__text .pl-lead-sm { max-width: 440px; }
+.pl-media-card {
+  position: relative; overflow: hidden; aspect-ratio: 1.1 / 1; padding: 40px; border-radius: var(--pl-r-xl);
+  display: flex; align-items: center; justify-content: center;
+}
+
+
+/* ---------- 15. compare table -------------------------------------------- */
+.pl-compare { display: flex; flex-direction: column; gap: 20px; }
+.pl-compare__head, .pl-compare__row { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.pl-compare__head { padding: 0 30px; font-size: 14px; color: var(--pl-muted); }
+.pl-compare__head > :last-child { color: var(--pl-ink); font-weight: 600; }
+.pl-compare__row { padding: 10px; border-radius: var(--pl-r-md); background: var(--pl-surface); }
+.pl-compare__row > div { padding: 20px; display: flex; align-items: center; text-wrap: pretty; }
+.pl-compare__row > div:nth-child(1) { font-family: var(--pl-font-display); font-weight: 600; font-size: 20px; line-height: 1.2; }
+.pl-compare__row > div:nth-child(2) { color: var(--pl-muted); }
+.pl-compare__row > div:nth-child(3) { background: #fff; border-radius: var(--pl-r-sm); }
+
+
+/* ---------- 16. CTA card ------------------------------------------------- */
+.pl-cta {
+  position: relative; overflow: hidden; min-height: 760px;
+  padding: clamp(40px, 7vw, 100px) clamp(24px, 5vw, 60px) 0; border-radius: var(--pl-r-xl); background: var(--pl-surface);
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px;
+}
+.pl-cta > :not(.pl-cta__hills) { position: relative; z-index: 2; }
+.pl-cta__mark { width: 120px; height: 120px; object-fit: contain; display: block; margin: 0 auto 6px; }
+.pl-cta .pl-h-lg { max-width: 760px; }
+.pl-cta .pl-lead { color: var(--pl-muted); max-width: 560px; }
+.pl-cta .pl-btn-halo { margin-top: 20px; }
+/* landscape on the bottom edge: IN FLOW, pushed down by margin-top:auto, bleeding past the padding */
+.pl-cta__hills {
+  position: relative; z-index: 0; flex: 0 0 auto; align-self: center; display: block;
+  width: calc(100% + (2 * clamp(24px, 5vw, 60px))); max-width: none; height: auto;
+  margin: auto calc(-1 * clamp(24px, 5vw, 60px)) 0;
+}
+
+
+/* ---------- 17. footer --------------------------------------------------- */
+.pl-footer { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; align-items: flex-start; }
+.pl-footer__brand { display: flex; flex-direction: column; gap: 10px; max-width: 420px; color: var(--pl-muted); }
+.pl-footer__logo { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 17px; color: var(--pl-ink); }
+.pl-footer__logo img { width: 32px; height: 32px; object-fit: contain; display: block; }
+.pl-footer__line { font-size: 18px; }
+.pl-footer__cols { display: flex; gap: 70px; flex-wrap: wrap; }
+.pl-footer__col { display: flex; flex-direction: column; gap: 14px; }
+.pl-footer__col > span { font-size: 20px; }
+.pl-footer__col a { transition: color var(--pl-fast); }
+.pl-footer__col a:hover { color: var(--pl-accent); }
+.pl-footer__mail { align-self: flex-start; font-weight: 600; font-size: 16px; color: var(--pl-ink) !important; }
+.pl-footer__mail:hover { color: var(--pl-accent) !important; }
+
+
+/* ---------- 18. derived ---------------------------------------------------
+   Not on the home page. Built only from the tokens above for the pages the
+   home page doesn't have (interior pages, legal text, status labels).
+   -------------------------------------------------------------------------- */
+
+/* interior page hero: same sky, veil and fade; no art, no 100vh */
+.pl-hero--page { min-height: 0; padding-bottom: 140px; }
+.pl-hero--page .pl-hero__content { gap: 20px; }
+
+/* long-form text (privacy, terms, articles). Home page body is 1.3 — too tight for reading. */
+.pl-prose { max-width: 720px; margin: 0 auto; font-size: 16px; line-height: 1.6; }
+.pl-prose > * + * { margin-top: 16px; }
+.pl-prose h2 { font-family: var(--pl-font-display); font-weight: 600; font-size: 28px; line-height: 1.2; letter-spacing: -.5px; margin-top: 48px; }
+.pl-prose h3 { font-family: var(--pl-font-display); font-weight: 600; font-size: 20px; line-height: 1.2; margin-top: 32px; }
+.pl-prose a { color: var(--pl-accent); font-weight: 600; }
+.pl-prose a:hover { color: var(--pl-ink); }
+.pl-prose ul, .pl-prose ol { padding-left: 22px; }
+.pl-prose li + li { margin-top: 6px; }
+.pl-prose .pl-muted { font-size: 14px; }
+
+/* plain grey ringed card for small compositions (integration rows, FAQ items).
+   Same surface, ring and radius as a compare row. */
+.pl-card { position: relative; display: flex; flex-direction: column; gap: var(--gap, 14px); padding: 24px; border-radius: var(--pl-r-md); background: var(--pl-surface); }
+.pl-card--row { flex-direction: row; align-items: center; justify-content: space-between; }
+
+/* status chip ("Coming soon", plan labels). Tinted status colours; the text is a darker
+   shade of the same hue so 13px text passes WCAG AA (≥4.5:1). */
+.pl-chip { display: inline-flex; align-items: center; align-self: flex-start; padding: 4px 12px; border-radius: var(--pl-r-pill); font-size: 13px; font-weight: 600; white-space: nowrap; background: #fff; color: var(--pl-ink); }
+.pl-chip--accent { background: rgba(246, 76, 38, .1);  color: #c03a1c; }
+.pl-chip--ok     { background: rgba(16, 185, 129, .14); color: #067652; }
+.pl-chip--warn   { background: rgba(255, 139, 6, .14);  color: #9a5200; }
+
+
+/* ---------- 19. responsive ----------------------------------------------- */
+@media (min-width: 1025px) {
+  /* optical alignment: the 64px title has more air above its cap height than the
+     20px lead, so the right column is nudged down a measured 5px */
+  .pl-split-head__aside { position: relative; top: 5px; }
+}
+
+@media (max-width: 1024px) {
+  .pl-section, .pl-hero { padding-top: 90px; }
+  .pl-hero { min-height: 0; }
+  .pl-hero--page { padding-bottom: 90px; }
+  .pl-hero__spacer { height: clamp(160px, 32vw, 320px); }
+  .pl-hero__art { height: clamp(200px, 44vw, 420px); bottom: -4%; }
+
+  .pl-h-xl { font-size: clamp(40px, 11vw, 72px); }
+  .pl-h-lg { font-size: clamp(34px, 9vw, 56px); }
+  .pl-h-md, .pl-cta .pl-h-lg { font-size: clamp(30px, 8vw, 44px); }
+
+  .pl-nav__logo { white-space: nowrap; }
+  .pl-nav__links { display: none; }
+  .pl-burger { display: flex; margin-left: auto; }
+  .pl-navmenu {
+    display: flex; flex-direction: column; gap: 2px;
+    position: absolute; top: calc(100% + 10px); left: 0; right: 0;
+    background: #fff; border-radius: var(--pl-r-lg); padding: 8px;
+    box-shadow: var(--pl-ring), 0 12px 30px rgba(29, 29, 29, .1);
+    visibility: hidden; opacity: 0; transform: translateY(-6px); pointer-events: none;
+    transition: opacity var(--pl-fast), transform var(--pl-fast) var(--pl-ease), visibility var(--pl-fast);
+  }
+  .pl-navmenu[data-open] { visibility: visible; opacity: 1; transform: none; pointer-events: auto; }
+
+  .pl-split-head__aside { align-items: flex-start; text-align: left; }
+  .pl-eyebrow-art { width: 120px; height: 120px; }
+  .pl-pin { width: 96px; height: 96px; z-index: 0; opacity: .9; }
+  .pl-pin ~ * { position: relative; z-index: 1; }
+
+  .pl-bento { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-rows: minmax(360px, auto); }
+  .pl-bento__tall { grid-row: auto; min-height: 360px; }
+  .pl-bento__wide { grid-column: auto; }
+  .pl-tilt-wrap { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+  .pl-tilt { position: relative !important; inset: auto !important; width: 100% !important; aspect-ratio: auto !important; transform: none !important; }
+
+  .pl-glass--live { height: auto !important; }
+  .pl-stepper__panel { position: static; width: 100%; max-width: 100%; }
+
+  .pl-media-card { aspect-ratio: auto; padding: 28px; }
+  .pl-split--reverse > .pl-media-card { order: 2; }   /* copy first on phones */
+
+  .pl-compare__head { display: none; }
+  .pl-compare__row { grid-template-columns: 1fr; gap: 6px; }
+  .pl-compare__row > div { padding: 14px 20px; }
+}
+
+@media (max-width: 640px) {
+  .pl-hero { background-image: url(../assets/hero-clouds-1250.webp); }
+
+  .pl-nav__wordmark { display: none; }   /* mark only, or the nav button wraps */
+  .pl-nav__logo { padding-left: 0; gap: 0; }
+  .pl-btn--sm { padding: 10px 10px 10px 16px; font-size: 13px; white-space: nowrap; }
+
+  /* button pairs go full width and equal */
+  .pl-btn-row { width: 100%; flex-direction: column; align-items: stretch; }
+  .pl-btn-row > a { width: 100%; }
+  /* padding stays as-is: the primary keeps 30px left / 12px right so the arrow disc balances the label */
+  .pl-btn-row > a > span { width: 100%; justify-content: center; height: 48px; text-align: center; }
+
+  .pl-bento > .pl-tile { padding: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pl-glass--live::after { animation: none; opacity: 0; }
+  .pl-zoom .pl-media, .pl-glass--live, .pl-hero__float { transition: none; }
+}
