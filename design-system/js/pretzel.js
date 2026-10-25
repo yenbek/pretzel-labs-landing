@@ -5,7 +5,7 @@
      [data-pl-stepper]               auto-rotating step card (see components.md → Stepper)
      [data-pl-parallax]              hero art drifts with the pointer
      video[data-src]                 fetched when near the viewport, slow ping-pong loop
-     [data-pl-glass="assets/x.jpg"]  fluted-glass shader over a photo (lazy, optional)
+     [data-pl-glass="/assets/x.jpg"]  fluted-glass shader over a photo (lazy, optional)
      .pl-glass--live                 edge light runs only while on screen
 */
 (function () {
@@ -51,13 +51,21 @@
 
     function set(i) {
       cur = i;
-      pills.forEach(function (p, n) { p.setAttribute('aria-selected', n === i ? 'true' : 'false'); });
+      // roving tabindex: only the selected tab is a Tab stop; arrows move between tabs
+      pills.forEach(function (p, n) { p.setAttribute('aria-selected', n === i ? 'true' : 'false'); p.tabIndex = n === i ? 0 : -1; });
       var d = pills[i].dataset;
       Object.keys(fields).forEach(function (k) { if (fields[k] && d[k] != null) fields[k].textContent = d[k]; });
       if (bar && d.progress) bar.style.width = d.progress;
     }
     pills.forEach(function (p, i) {
       p.addEventListener('click', function () { clearInterval(timer); timer = null; set(i); });
+      p.addEventListener('keydown', function (e) {
+        var n = { ArrowRight: i + 1, ArrowDown: i + 1, ArrowLeft: i - 1, ArrowUp: i - 1, Home: 0, End: pills.length - 1 }[e.key];
+        if (n == null) return;
+        e.preventDefault();
+        n = (n + pills.length) % pills.length;
+        pills[n].focus(); pills[n].click();
+      });
     });
     set(0);
     if (every > 0 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -74,8 +82,9 @@
     }, { passive: true });
   }
 
-  // --- background video: fetch only when near, then slow ping-pong playback ---
-  [].slice.call(document.querySelectorAll('video[data-src]')).forEach(function (v) {
+  // --- background video: fetch only when near, then slow ping-pong playback.
+  //     Under reduced motion it is never fetched; the poster stays. ---
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) [].slice.call(document.querySelectorAll('video[data-src]')).forEach(function (v) {
     onSeen(v, function () {
       v.muted = true;
       v.src = v.getAttribute('data-src');

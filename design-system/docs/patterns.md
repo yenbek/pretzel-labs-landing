@@ -73,7 +73,7 @@ Facts (limits, trial terms, "card required") must match `product-brief.md` §8 e
 
 ### Integrations page (`/integrations`)
 1. `.pl-hero--page`
-2. Grid of `.pl-card.pl-card--row.pl-ring` (`--min:220px; --gap:20px`): name in `.pl-h-xs` + status chip (`--ok` Live, `--accent` Coming soon). **Names as text: no third-party logos** (no licence, trademark risk)
+2. Grid of `.pl-card.pl-card--row.pl-ring` (`--min:280px; --gap:20px`; chips wrap under the name when a card is narrow): name in `.pl-h-xs` + status chip (`--ok` Live, `--accent` Coming soon). **Names as text: no third-party logos** (no licence, trademark risk)
 3. Split feature explaining what's read and what never is ("Pretzel reads; it never writes to your CRM")
 4. CTA card
 Statuses come from `product-brief.md` §7 and change often. Re-check them.
