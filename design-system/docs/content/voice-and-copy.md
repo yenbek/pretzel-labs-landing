@@ -89,7 +89,7 @@ Everything inside a glass panel is an obvious illustration.
 
 Never publish:
 
-- Timing promises: "real-time", "live", "in under a minute", "flagged on day three". Data refreshes **daily**.
+- Timing promises: "real-time", "live" (as in "updated live"), "in under a minute", "flagged on day three". Data refreshes **daily**. "Live" as a status label (an integration that works today, a chip) is fine.
 - Autonomous action: "Pretzel sends for you", "let Pretzel handle it". Nothing is sent or written back.
 - Unsourced statistics ("accurate under 25% of the time").
 - "Free", "no credit card required". The trial needs a card.
@@ -97,9 +97,9 @@ Never publish:
 - Real customer logos, testimonials, case studies. There are no public customers yet.
 - Gong or Clari features presented as Pretzel's, or implied partnerships.
 
-Allowed, because the site is vision-forward (brief §1): AI-drafted follow-ups, deal health score, MEDDICC coverage, multi-threading, Slack/email alerts, forecasting, coaching, win patterns. Phrase them as what Pretzel does, but never with timing or autonomy claims. If a page targets trial sign-ups, consider a "Coming soon" chip on vision features (brief §8.6).
+Allowed, because the site is vision-forward (brief §1): AI-drafted follow-ups, deal health score, MEDDICC coverage, multi-threading and buying committee, competitor detection, Slack/email alerts, forecasting, coaching, win patterns. Phrase them as what Pretzel does, but never with timing or autonomy claims. If a page targets trial sign-ups, consider a "Coming soon" chip on vision features (brief §8.6).
 
-Safe claims to lean on: every email and call on one deal timeline with no rep logging · flags missed follow-ups, unanswered prospect emails, deals going dark, repeated declines · thresholds configurable per team · read-only: never writes to your CRM · priced by deals, not seats, with unlimited users · works with Salesforce, Gmail, and Gong.
+Safe claims to lean on: every email and call on one deal timeline with no rep logging · flags missed follow-ups, unanswered prospect emails, deals going dark, repeated declines · thresholds configurable per team · read-only: never writes to your CRM, read-only access to Gmail · only CRM-matched external email is captured, admins choose which mailboxes · each company's data is isolated · priced by deals, not seats, with unlimited users · works with Salesforce, Gmail, and Gong.
 
 ## 8. CTA vocabulary
 

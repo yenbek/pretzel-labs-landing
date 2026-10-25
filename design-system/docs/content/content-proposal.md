@@ -1,4 +1,4 @@
-> **Copy kept in the design system.** Original: `docs/content-proposal.md` at the repo root, copied 2026-10-24. Status: **proposal, not applied.** The file paths below refer to the production build (`dist/index.html`, `dist/app.js`). In this folder the same strings live in `index.html`, and the step texts sit in the `data-*` attributes of the stepper pills (no `STEPS` array). Design rules it cites from `pretzel-labs-kit/DESIGN.md` are now in `../components.md` and `voice-and-copy.md`.
+> **Source of truth.** This is the only copy (it was also at `docs/content-proposal.md` in the repo root until 2026-10-25). Status: **proposal, not applied.** The file paths below refer to the production build (`dist/index.html`, `dist/app.js`). In this folder the same strings live in `index.html`, and the step texts sit in the `data-*` attributes of the stepper pills (no `STEPS` array). Design rules it cites from `pretzel-labs-kit/DESIGN.md` are now in `../components.md` and `voice-and-copy.md`.
 
 # Landing Page — Content Change Proposal
 

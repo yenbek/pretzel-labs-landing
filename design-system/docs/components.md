@@ -88,7 +88,7 @@ Pattern: the `<a>` is the **halo**, the pill is a `<span>` inside it:
 ```html
 <div class="pl-btn-row">
   <a class="pl-btn-halo" href="/#cta"><span class="pl-btn pl-btn--primary">Get a demo<span class="pl-btn__arrow">→</span></span></a>
-  <a class="pl-btn-halo" href="#how"><span class="pl-btn pl-btn--ghost">How it works</span></a>
+  <a class="pl-btn-halo" href="/#how"><span class="pl-btn pl-btn--ghost">How it works</span></a>
 </div>
 
 <!-- single dark button on white -->
@@ -174,7 +174,7 @@ Three heads. Pick by layout:
   </div>
 </div>
 ```
-Desktop: the aside is right-aligned and nudged down 5px (the 64px title has more air above its cap height). ≤1024: everything left-aligned and stacked.
+Desktop: the aside is right-aligned and nudged down 5px (the 64px title has more air above its cap height). ≤1024: the aside is left-aligned. The two columns stay side by side until the container is narrower than ~730px, then stack.
 
 **2. Pinned head**: title (+ optional lead) left, a 160px render pinned to the right edge, vertically centred. The default section head.
 
@@ -197,6 +197,7 @@ Desktop: the aside is right-aligned and nudged down 5px (the 64px title has more
 |---|---|
 | `.pl-ring` | The 4px ring, orange on hover. Add it to **every** card-like container |
 | `.pl-media` | Absolute, fills its card, `background: center/cover`. Set `style="background-image:url(…)"`. Also works on `<video class="pl-media">` |
+| `.pl-scrim` | Base class, always present: absolute, fills the card. Add one modifier: `class="pl-scrim pl-scrim--frame"` |
 | `.pl-scrim--frame` | White fade top 60% → clear → bottom 85%: title top, caption bottom |
 | `.pl-scrim--strong` | Same with a stronger top (80%) for busy media (video) |
 | `.pl-scrim--top` | Top 70% → clear at 45%: title-only tiles |
@@ -235,7 +236,7 @@ Content is **illustrative product UI**: pastry-named demo accounts, plausible nu
 
 | Class | Renders |
 |---|---|
-| `.pl-kv` | Label ←→ value row, 13px. Spans are muted; `<b>` values are ink 600. `--14` for 14px |
+| `.pl-kv` | Label ←→ value row, 13px. Spans are muted; `<b>` values are ink, browser-bold (700). `--14` for 14px |
 | `.pl-tag` | Orange 600 status word ("At risk", "Captured") |
 | `.pl-label` | 13px muted standalone label ("This quarter") |
 | `.pl-stat` | 56px number, unit in `<small>` (20px muted). `--md`: 36px, balanced, min 2 lines |

@@ -1,4 +1,4 @@
-> **Copy kept in the design system.** Original: `docs/product-brief.md` at the repo root, copied 2026-10-24. If the two differ, the newer file wins; re-sync them.
+> **Source of truth.** This is the only copy (it was also at `docs/product-brief.md` in the repo root until 2026-10-25).
 
 # Pretzel — Product Brief for the Landing Site
 
