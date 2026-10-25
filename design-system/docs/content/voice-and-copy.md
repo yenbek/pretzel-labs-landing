@@ -99,7 +99,7 @@ Never publish:
 
 Allowed, because the site is vision-forward (brief §1): AI-drafted follow-ups, deal health score, MEDDICC coverage, multi-threading and buying committee, competitor detection, Slack/email alerts, forecasting, coaching, win patterns. Phrase them as what Pretzel does, but never with timing or autonomy claims. If a page targets trial sign-ups, consider a "Coming soon" chip on vision features (brief §8.6).
 
-Safe claims to lean on: every email and call on one deal timeline with no rep logging · flags missed follow-ups, unanswered prospect emails, deals going dark, repeated declines · thresholds configurable per team · read-only: never writes to your CRM, read-only access to Gmail · only CRM-matched external email is captured, admins choose which mailboxes · each company's data is isolated · priced by deals, not seats, with unlimited users · works with Salesforce, Gmail, and Gong.
+Safe claims to lean on: every email and call on one deal timeline with no rep logging · flags missed follow-ups, unanswered prospect emails, deals going dark, repeated declines · signal rules configurable for the deal board · read-only: never writes to your CRM, read-only access to Gmail · only CRM-matched external email is captured, admins choose which mailboxes · each company's data is isolated · priced by deals, not seats, with unlimited users · works with Salesforce, Gmail, and Gong.
 
 ## 8. CTA vocabulary
 
