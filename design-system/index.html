@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pretzel Labs</title>
+
+<link rel="preload" as="font" type="font/woff2" href="/fonts/dmsans-rP2Hp2ywxg089UriCZOIHTWEBlw.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/spacegrotesk-V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2" crossorigin>
+<link rel="preload" as="image" href="/assets/hero-clouds-1250.webp" media="(max-width:640px)" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/hero-clouds.jpg" media="(min-width:641px)" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/pretzel-2d.webp" imagesrcset="/assets/pretzel-2d-460.webp 460w, /assets/pretzel-2d-840.webp 840w, /assets/pretzel-2d.webp 1377w" imagesizes="(max-width:453px) 228px, (max-width:640px) 330px, (max-width:1024px) 440px, 740px" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/eyebrow/7-64.webp">
+<link rel="stylesheet" href="/css/pretzel.css">
+</head>
+<body>
+<div class="pl-page">
+
+<!-- ================= NAV — identical on every page (see docs/components.md → Navigation) -->
+<div class="pl-navbar">
+  <nav class="pl-nav" aria-label="Main">
+    <a class="pl-nav__logo" href="/">
+      <img src="/assets/eyebrow/7-64.webp" alt="Pretzel Labs" width="32" height="32" decoding="async"><span class="pl-nav__wordmark">Pretzel Labs</span></a>
+    <div class="pl-nav__links">
+      <a href="/#product">Product</a>
+      <a href="/#how">Solutions</a>
+      <a href="/#leaders">Customers</a>
+      <a href="/#compare">Company</a>
+    </div>
+    <button class="pl-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="pl-navmenu"><span></span><span></span><span></span></button>
+    <a class="pl-btn pl-btn--dark pl-btn--sm" href="/#cta">Request access <span class="pl-btn__arrow">→</span></a>
+    <div class="pl-navmenu" id="pl-navmenu">
+      <a href="/#product">Product</a><a href="/#how">Solutions</a><a href="/#leaders">Customers</a><a href="/#compare">Company</a>
+    </div>
+  </nav>
+</div>
+
+<!-- ================= HERO -->
+<section class="pl-hero" id="hero">
+  <div class="pl-hero__content">
+    <h1 class="pl-h-xl">Your pipeline, <em>finally honest</em> with you.</h1>
+    <p class="pl-lead">Pretzel Labs is an AI-powered Deal Intelligence and Execution solution built for data-driven B2B sales teams.</p>
+    <div class="pl-btn-row">
+      <a class="pl-btn-halo" href="/#cta"><span class="pl-btn pl-btn--primary">Get a demo<span class="pl-btn__arrow">→</span></span></a>
+      <a class="pl-btn-halo" href="#"><span class="pl-btn pl-btn--ghost">Watch a 4-min tour</span></a>
+    </div>
+    <div class="pl-checks">
+      <span><span class="pl-tick"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true" focusable="false"><path d="M1.6 5.1 3.9 7.4 8.4 2.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Signal-driven forecast</span>
+      <span><span class="pl-tick"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true" focusable="false"><path d="M1.6 5.1 3.9 7.4 8.4 2.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>No rep logging</span>
+      <span><span class="pl-tick"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true" focusable="false"><path d="M1.6 5.1 3.9 7.4 8.4 2.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Built for B2B revenue teams</span>
+    </div>
+    <div class="pl-hero__spacer"></div>
+  </div>
+  <div class="pl-hero__art">
+    <div class="pl-hero__float" data-pl-parallax>
+      <img src="/assets/pretzel-2d.webp" srcset="/assets/pretzel-2d-460.webp 460w, /assets/pretzel-2d-840.webp 840w, /assets/pretzel-2d.webp 1377w" sizes="(max-width:453px) 228px, (max-width:640px) 330px, (max-width:1024px) 440px, 740px" alt="" decoding="async" fetchpriority="high">
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURES: split head + bento -->
+<section class="pl-section" id="product">
+  <div class="pl-container pl-stack">
+    <div class="pl-grid pl-split-head">
+      <div class="pl-split-head__main">
+        <img class="pl-eyebrow-art" src="/assets/eyebrow/1.webp" alt="" loading="lazy" decoding="async">
+        <h2 class="pl-h-lg">The engine behind every closed deal</h2>
+      </div>
+      <div class="pl-split-head__aside">
+        <p class="pl-lead pl-muted" style="max-width:480px">Deal intelligence for B2B sales teams that would rather act on signal than on reports.</p>
+        <a class="pl-btn-halo" href="/#cta"><span class="pl-btn pl-btn--dark">View all features<span class="pl-btn__arrow">→</span></span></a>
+      </div>
+    </div>
+
+    <div class="pl-bento">
+      <!-- photo tile, fluted shader, title top / caption bottom -->
+      <div class="pl-tile pl-tile--spread pl-ring">
+        <div class="pl-media" style="background-image:url(/assets/feature-timeline.jpg)" data-pl-glass="/assets/feature-timeline.jpg"></div>
+        <div class="pl-scrim pl-scrim--frame"></div>
+        <h3 class="pl-h-sm">Every touch on one timeline</h3>
+        <div class="pl-tile__foot">
+          <p class="pl-caption">Emails, calls, and meetings — captured automatically, with no rep logging.</p>
+          <a class="pl-link-cta" href="/#cta">Learn more →</a>
+        </div>
+      </div>
+
+      <!-- photo tile with a live glass panel -->
+      <div class="pl-tile pl-tile--sky pl-ring pl-zoom" style="--gap:16px">
+        <div class="pl-media" style="background-image:url(/assets/feature-2.jpg)" data-pl-glass="/assets/feature-2.jpg"></div>
+        <h3 class="pl-h-sm">Know why a deal is at risk</h3>
+        <div class="pl-glass pl-glass--live pl-glass--spread pl-fill">
+          <div class="pl-kv"><span>Deal health</span><span class="pl-tag">At risk</span></div>
+          <div class="pl-stat">72<small>/100</small></div>
+          <div class="pl-rows">
+            <div class="pl-kv"><span>MEDDICC</span><b>3 / 6</b></div>
+            <div class="pl-bar"><i style="width:50%"></i></div>
+          </div>
+        </div>
+        <div class="pl-tile__foot">
+          <p class="pl-caption">MEDDICC coverage, threading, and comms — scored live.</p>
+          <a class="pl-link-cta" href="/#cta">Learn more →</a>
+        </div>
+      </div>
+
+      <!-- tall video tile -->
+      <div class="pl-tile pl-tile--roomy pl-tile--spread pl-bento__tall pl-ring">
+        <video class="pl-media" poster="/assets/feature-1.webp" preload="none" muted playsinline data-src="/assets/feature-1.mp4"></video>
+        <div class="pl-scrim pl-scrim--strong"></div>
+        <h3 class="pl-h-sm">AI to power your comms</h3>
+        <div class="pl-fill"></div>
+        <div class="pl-tile__foot">
+          <p class="pl-caption">Drafts in your voice, aware of every thread — plus a coach that plans your day.</p>
+          <a class="pl-link-cta" href="/#cta">Learn more →</a>
+        </div>
+      </div>
+
+      <!-- wide tile with two tilted glass cards -->
+      <div class="pl-tile pl-tile--center pl-bento__wide pl-ring pl-zoom">
+        <div class="pl-media" style="background-image:url(/assets/feature-3.jpg)" data-pl-glass="/assets/feature-3.jpg"></div>
+        <div class="pl-scrim pl-scrim--top"></div>
+        <h3 class="pl-h-sm">Forecasting you can defend</h3>
+        <p class="pl-caption">Pipeline, commit, and best case in one view — with slippage flagged early.</p>
+        <a class="pl-link-cta" href="/#cta">Learn more →</a>
+        <div class="pl-tilt-wrap">
+          <div class="pl-glass pl-tilt" style="left:89px;top:37px;width:34%;aspect-ratio:1/1;transform:rotate(-8deg)">
+            <span class="pl-label">This quarter</span>
+            <div class="pl-rows" style="--gap:10px">
+              <div class="pl-kv"><span>Pipeline</span><b>$1.2M</b></div>
+              <div class="pl-bar"><i class="is-ink" style="width:100%"></i></div>
+              <div class="pl-kv"><span>Best case</span><b>$880k</b></div>
+              <div class="pl-bar"><i style="width:73%"></i></div>
+              <div class="pl-kv"><span>Commit</span><b>$640k</b></div>
+              <div class="pl-bar"><i class="is-ok" style="width:53%"></i></div>
+            </div>
+          </div>
+          <div class="pl-glass pl-tilt" style="left:46%;bottom:-116px;width:42%;aspect-ratio:1.1/1;transform:rotate(6deg)">
+            <span class="pl-label">Open pipeline</span>
+            <div class="pl-rows" style="--gap:10px">
+              <div class="pl-kv"><span>Acme Corp</span><b>$48k</b></div>
+              <div class="pl-kv"><span>Brioche Cap.</span><b>$31k</b></div>
+              <div class="pl-kv"><span>Croissant Inc.</span><b>$22k</b></div>
+              <div class="pl-kv"><span>Strudel Corp</span><b>$18k</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY: pinned head + reason tiles -->
+<section class="pl-section">
+  <div class="pl-container pl-stack">
+    <div class="pl-pin-head">
+      <img class="pl-pin" src="/assets/eyebrow/2.webp" alt="" loading="lazy" decoding="async">
+      <h2 class="pl-h-md" style="max-width:440px">Revenue runs on <em>real signal</em>.</h2>
+    </div>
+    <div class="pl-grid" style="--min:260px">
+      <div class="pl-reason pl-ring">
+        <img class="pl-icon" src="/assets/icons/1.webp" alt="" loading="lazy" decoding="async">
+        <div class="pl-reason__body"><h3 class="pl-h-sm">See the deal, not the story</h3><p>What is real, not what reps hope.</p></div>
+      </div>
+      <div class="pl-reason pl-ring">
+        <img class="pl-icon" src="/assets/icons/2.webp" alt="" loading="lazy" decoding="async">
+        <div class="pl-reason__body"><h3 class="pl-h-sm">Risk, caught early</h3><p>Weeks before close, not after.</p></div>
+      </div>
+      <div class="pl-reason pl-ring">
+        <img class="pl-icon" src="/assets/icons/3.webp" alt="" loading="lazy" decoding="async">
+        <div class="pl-reason__body"><h3 class="pl-h-sm">Coaching that lands</h3><p>Evidence, not vibes.</p></div>
+      </div>
+      <div class="pl-reason pl-ring">
+        <img class="pl-icon" src="/assets/icons/4.webp" alt="" loading="lazy" decoding="async">
+        <div class="pl-reason__body"><h3 class="pl-h-sm">A number you can defend</h3><p>Backed by real signal.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS: pinned head + stepper -->
+<section class="pl-section" id="how">
+  <div class="pl-container pl-stack">
+    <div class="pl-pin-head" style="--gap:12px">
+      <img class="pl-pin" src="/assets/eyebrow/3.webp" alt="" loading="lazy" decoding="async">
+      <h2 class="pl-h-md" style="max-width:560px">Signal → insight → <em>action.</em> Closed loop.</h2>
+      <p class="pl-lead-sm" style="max-width:520px">The right signal, analyzed, and turned into a next step — in under a minute.</p>
+    </div>
+    <div class="pl-grid pl-stepper pl-ring pl-zoom" data-pl-stepper="4000">
+      <div class="pl-media" style="background-image:url(/assets/feature-3.jpg)"></div>
+      <div class="pl-stepper__main">
+        <div class="pl-stepper__pills" role="tablist" aria-label="How it works steps">
+          <button class="pl-pill" type="button" role="tab" aria-controls="pl-step-panel" aria-selected="true" data-pl-step data-num="01" data-title="Capture signals" data-text="Emails, meetings, calendar patterns, and stakeholder behavior — captured automatically." data-tag="Captured" data-big="128 signals" data-progress="20%">Step 01</button>
+          <button class="pl-pill" type="button" role="tab" aria-controls="pl-step-panel" aria-selected="false" data-pl-step data-num="02" data-title="Get a live pulse of each deal" data-text="Relationship maps, engagement, threading, and execution gaps — assembled in real time." data-tag="Live" data-big="Health 72 / 100" data-progress="40%">Step 02</button>
+          <button class="pl-pill" type="button" role="tab" aria-controls="pl-step-panel" aria-selected="false" data-pl-step data-num="03" data-title="Surface risk early" data-text="EB disengagement or a stalled deal — flagged to your team over Slack and email." data-tag="At risk" data-big="CFO silent 19 days" data-progress="60%">Step 03</button>
+          <button class="pl-pill" type="button" role="tab" aria-controls="pl-step-panel" aria-selected="false" data-pl-step data-num="04" data-title="Enable action" data-text="Tailored recommendations — run them yourself or let Pretzel handle it." data-tag="Next step" data-big="Book exec alignment" data-progress="80%">Step 04</button>
+          <button class="pl-pill" type="button" role="tab" aria-controls="pl-step-panel" aria-selected="false" data-pl-step data-num="05" data-title="Capitalize on every win" data-text="Each outcome feeds back into win patterns shared across the team." data-tag="Closed" data-big="Won · $180K" data-progress="100%">Step 05</button>
+        </div>
+        <div class="pl-stepper__copy" id="pl-step-panel" role="tabpanel">
+          <span class="pl-stepper__num" data-pl-field="num">01</span>
+          <h3 class="pl-h-sm" data-pl-field="title">Capture signals</h3>
+          <p data-pl-field="text">Emails, meetings, calendar patterns, and stakeholder behavior — captured automatically.</p>
+        </div>
+      </div>
+      <div class="pl-stepper__panel">
+        <div class="pl-glass pl-glass--live">
+          <div class="pl-kv"><span>Strudel Corp</span><span class="pl-tag" data-pl-field="tag">Captured</span></div>
+          <div class="pl-stat pl-stat--md" data-pl-field="big">128 signals</div>
+          <div class="pl-bar pl-bar--6"><i data-pl-progress style="width:20%"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOR REVENUE LEADERS: split, copy left -->
+<section class="pl-section" id="leaders">
+  <div class="pl-container pl-grid pl-split">
+    <div class="pl-split__text">
+      <img class="pl-eyebrow-art" src="/assets/eyebrow/4.webp" alt="" loading="lazy" decoding="async">
+      <h2 class="pl-h-md">Commit a number you <em>actually trust.</em></h2>
+      <p class="pl-lead-sm">Signal truth on Monday. Risks before the board call. A forecast explained deal by deal.</p>
+      <a class="pl-link-cta pl-link-cta--lg" href="/#cta">Learn more →</a>
+    </div>
+    <div class="pl-media-card pl-ring pl-zoom">
+      <div class="pl-media" style="background-image:url(/assets/feature-3.jpg)"></div>
+      <div class="pl-glass pl-glass--lg pl-glass--live">
+        <div class="pl-kv"><span>Forecast · Q2</span><span>Week 7 / 13</span></div>
+        <div class="pl-stat">$1.8M<small> commit</small></div>
+        <div class="pl-rows" style="--gap:12px">
+          <div class="pl-kv pl-kv--14"><span>Best case</span><b>$2.4M</b></div>
+          <div class="pl-bar pl-bar--6"><i class="is-ink" style="width:100%"></i></div>
+          <div class="pl-kv pl-kv--14"><span>Commit</span><b>$1.8M</b></div>
+          <div class="pl-bar pl-bar--6"><i class="is-ok" style="width:75%"></i></div>
+          <div class="pl-kv pl-kv--14"><span>At risk</span><b>$340K</b></div>
+          <div class="pl-bar pl-bar--6"><i style="width:14%"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOR SALES MANAGERS: split, media first (moves below the copy on phones) -->
+<section class="pl-section" id="managers">
+  <div class="pl-container pl-grid pl-split pl-split--reverse">
+    <div class="pl-media-card pl-ring pl-zoom">
+      <div class="pl-media" style="background-image:url(/assets/feature-2.jpg)"></div>
+      <div class="pl-glass pl-glass--lg pl-glass--live">
+        <div class="pl-kv"><span>Monday</span><span>3 need you</span></div>
+        <div class="pl-stat">3<small> / 40</small></div>
+        <div class="pl-dotlist">
+          <div><span class="pl-dot"></span><span>Madeleine Corp</span><b>$180K</b></div>
+          <div><span class="pl-dot is-warn"></span><span>Tartelette Systems</span><b>$220K</b></div>
+          <div><span class="pl-dot is-ink"></span><span>Marcus T. · coaching</span><b></b></div>
+        </div>
+      </div>
+    </div>
+    <div class="pl-split__text">
+      <img class="pl-eyebrow-art" src="/assets/eyebrow/5.webp" alt="" loading="lazy" decoding="async">
+      <h2 class="pl-h-md">Coach the <em>actual problem,</em> not the reported one.</h2>
+      <p class="pl-lead-sm">Monday shows you the three deals that need you — not forty. 1:1s run on evidence, not vibes.</p>
+      <a class="pl-link-cta pl-link-cta--lg" href="/#cta">Learn more →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BEFORE / AFTER: pinned head + compare table -->
+<section class="pl-section" id="compare">
+  <div class="pl-container pl-stack">
+    <div class="pl-pin-head">
+      <img class="pl-pin" src="/assets/eyebrow/6.webp" alt="" loading="lazy" decoding="async">
+      <h2 class="pl-h-md" style="max-width:520px">What changes when the <em>signal</em> is real</h2>
+    </div>
+    <div class="pl-compare">
+      <div class="pl-compare__head"><span>Situation</span><span>Without Pretzel Labs</span><span>With Pretzel Labs</span></div>
+      <div class="pl-compare__row pl-ring">
+        <div>Monday pipeline review</div>
+        <div>Reps tell you what they want you to hear. You update slides from gut feel.</div>
+        <div>Signal-verified view surfaces the three deals that need your attention before you ask.</div>
+      </div>
+      <div class="pl-compare__row pl-ring">
+        <div>Forecast commit</div>
+        <div>Built from rep optimism and manager rounding. Accurate under 25% of the time.</div>
+        <div>Backed by behavioral evidence. You commit a number you can explain deal by deal.</div>
+      </div>
+      <div class="pl-compare__row pl-ring">
+        <div>Deal goes dark</div>
+        <div>You find out when the rep mentions it or the close date passes.</div>
+        <div>Silence flagged on day three. Coaching cue surfaced. There is still time to act.</div>
+      </div>
+      <div class="pl-compare__row pl-ring">
+        <div>Coaching a rep</div>
+        <div>"How is Torchlight looking?" Rep answers. You coach based on what they say.</div>
+        <div>"Engagement dropped after your demo — here is the behavioral pattern. What happened?"</div>
+      </div>
+      <div class="pl-compare__row pl-ring">
+        <div>Top rep leaves</div>
+        <div>Their deal knowledge, stakeholder maps, and winning patterns leave with them.</div>
+        <div>Everything captured. The next rep inherits the full picture and picks up without starting over.</div>
+      </div>
+      <div class="pl-compare__row pl-ring">
+        <div>New sales initiative</div>
+        <div>You train the team, then wait a quarter to see if anything changed in results.</div>
+        <div>You see behavioral signal change within days. Adjust before the window closes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA + FOOTER — the footer is identical on every page -->
+<section class="pl-section pl-section--last" id="cta">
+  <div class="pl-container pl-stack" style="--gap:100px">
+    <div class="pl-cta pl-ring">
+      <img class="pl-cta__mark" src="/assets/eyebrow/7.webp" alt="" loading="lazy" decoding="async">
+      <h2 class="pl-h-lg">Stop managing a reporting process. <em>Start leading a business.</em></h2>
+      <p class="pl-lead">Private early access. A 30-minute conversation about your pipeline.</p>
+      <a class="pl-btn-halo" href="#"><span class="pl-btn pl-btn--primary">Get a demo<span class="pl-btn__arrow">→</span></span></a>
+      <img class="pl-cta__hills" src="/assets/cta-hills-cut2.webp" alt="" loading="lazy" decoding="async">
+    </div>
+
+    <footer class="pl-footer">
+      <div class="pl-footer__brand">
+        <span class="pl-footer__logo"><img src="/assets/eyebrow/7-64.webp" alt="Pretzel Labs" loading="lazy" decoding="async">Pretzel Labs</span>
+        <span class="pl-footer__line">Deal Execution Intelligence · Early access 2026</span>
+        <span>Built for revenue teams that want fewer surprises and better quarters.</span>
+      </div>
+      <div class="pl-footer__cols">
+        <div class="pl-footer__col"><span>Product</span><a href="/#product">Features</a><a href="/#how">How it works</a><a href="/#compare">Before &amp; after</a></div>
+        <div class="pl-footer__col"><span>Solutions</span><a href="/#leaders">Revenue leaders</a><a href="/#managers">Sales managers</a><a href="/#cta">Early access</a></div>
+        <div class="pl-footer__col"><span>Company</span><a href="#">Customers</a><a href="#">Resources</a><a class="pl-footer__mail" href="mailto:hello@pretzel-labs.com">hello@pretzel-labs.com</a></div>
+      </div>
+    </footer>
+  </div>
+</section>
+
+</div>
+<script src="/js/pretzel.js" defer></script>
+</body>
+</html>

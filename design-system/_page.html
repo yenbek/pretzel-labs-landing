@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- TEMPLATE for an interior page. Copy to <slug>.html at the folder root (served at /<slug>).
+     Replace every COPY: placeholder, delete the sections you don't need, keep nav + footer verbatim.
+     Rules: README.md. Components: docs/components.md. Wording: docs/content/voice-and-copy.md. -->
+<title>COPY: Page name — Pretzel</title>
+<meta name="description" content="COPY: one sentence, ≤155 characters, says what the page is for.">
+
+<link rel="preload" as="font" type="font/woff2" href="/fonts/dmsans-rP2Hp2ywxg089UriCZOIHTWEBlw.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/spacegrotesk-V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2" crossorigin>
+<link rel="preload" as="image" href="/assets/hero-clouds-1250.webp" media="(max-width:640px)" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/hero-clouds.jpg" media="(min-width:641px)" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/eyebrow/7-64.webp">
+<link rel="stylesheet" href="/css/pretzel.css">
+<link rel="icon" href="/assets/eyebrow/7-64.webp" type="image/webp">
+</head>
+<body>
+<div class="pl-page">
+
+<!-- ================= NAV — verbatim from index.html. Only change: aria-current on the active link. -->
+<div class="pl-navbar">
+  <nav class="pl-nav" aria-label="Main">
+    <a class="pl-nav__logo" href="/">
+      <img src="/assets/eyebrow/7-64.webp" alt="Pretzel Labs" width="32" height="32" decoding="async"><span class="pl-nav__wordmark">Pretzel Labs</span></a>
+    <div class="pl-nav__links">
+      <a href="/#product">Product</a>
+      <a href="/#how">Solutions</a>
+      <a href="/#leaders">Customers</a>
+      <a href="/#compare">Company</a>
+    </div>
+    <button class="pl-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="pl-navmenu"><span></span><span></span><span></span></button>
+    <a class="pl-btn pl-btn--dark pl-btn--sm" href="/#cta">Request access <span class="pl-btn__arrow">→</span></a>
+    <div class="pl-navmenu" id="pl-navmenu">
+      <a href="/#product">Product</a><a href="/#how">Solutions</a><a href="/#leaders">Customers</a><a href="/#compare">Company</a>
+    </div>
+  </nav>
+</div>
+
+<!-- ================= PAGE HERO (derived: same sky, no pretzel art, no 100vh) -->
+<section class="pl-hero pl-hero--page">
+  <div class="pl-hero__content">
+    <h1 class="pl-h-xl">COPY: Plain words, <em>one italic phrase</em>.</h1>
+    <p class="pl-lead">COPY: One or two sentences that say what this page gives the reader. No category jargon.</p>
+    <div class="pl-btn-row">
+      <a class="pl-btn-halo" href="/#cta"><span class="pl-btn pl-btn--primary">Get a demo<span class="pl-btn__arrow">→</span></span></a>
+      <a class="pl-btn-halo" href="#details"><span class="pl-btn pl-btn--ghost">See details</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PINNED HEAD + REASON TILES -->
+<section class="pl-section" id="details">
+  <div class="pl-container pl-stack">
+    <div class="pl-pin-head" style="--gap:12px">
+      <img class="pl-pin" src="/assets/eyebrow/2.webp" alt="" loading="lazy" decoding="async">
+      <h2 class="pl-h-md" style="max-width:520px">COPY: Section title with <em>one italic phrase</em>.</h2>
+      <p class="pl-lead-sm" style="max-width:520px">COPY: One supporting sentence.</p>
+    </div>
+    <div class="pl-grid" style="--min:260px">
+      <div class="pl-reason pl-ring">
+        <img class="pl-icon" src="/assets/icons/1.webp" alt="" loading="lazy" decoding="async">
+        <div class="pl-reason__body"><h3 class="pl-h-sm">COPY: Outcome, 2–5 words</h3><p>COPY: One short line.</p></div>
+      </div>
+      <div class="pl-reason pl-ring">
+        <img class="pl-icon" src="/assets/icons/2.webp" alt="" loading="lazy" decoding="async">
+        <div class="pl-reason__body"><h3 class="pl-h-sm">COPY: Outcome, 2–5 words</h3><p>COPY: One short line.</p></div>
+      </div>
+      <div class="pl-reason pl-ring">
+        <img class="pl-icon" src="/assets/icons/3.webp" alt="" loading="lazy" decoding="async">
+        <div class="pl-reason__body"><h3 class="pl-h-sm">COPY: Outcome, 2–5 words</h3><p>COPY: One short line.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SPLIT FEATURE (copy left, photo + glass right) -->
+<section class="pl-section">
+  <div class="pl-container pl-grid pl-split">
+    <div class="pl-split__text">
+      <img class="pl-eyebrow-art" src="/assets/eyebrow/4.webp" alt="" loading="lazy" decoding="async">
+      <h2 class="pl-h-md">COPY: Title with <em>one italic phrase.</em></h2>
+      <p class="pl-lead-sm">COPY: Two or three short sentences. Concrete, in the reader's words.</p>
+      <a class="pl-link-cta pl-link-cta--lg" href="/#how">Learn more →</a>
+    </div>
+    <div class="pl-media-card pl-ring pl-zoom">
+      <div class="pl-media" style="background-image:url(/assets/feature-2.jpg)"></div>
+      <div class="pl-glass pl-glass--lg pl-glass--live">
+        <div class="pl-kv"><span>COPY: Panel label</span><span>COPY: meta</span></div>
+        <div class="pl-stat">3<small> / 40</small></div>
+        <div class="pl-dotlist">
+          <div><span class="pl-dot"></span><span>Madeleine Corp</span><b>$180K</b></div>
+          <div><span class="pl-dot is-warn"></span><span>Tartelette Systems</span><b>$220K</b></div>
+          <div><span class="pl-dot is-ok"></span><span>Brioche Cap.</span><b>$95K</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA + FOOTER — footer verbatim from index.html -->
+<section class="pl-section pl-section--last">
+  <div class="pl-container pl-stack" style="--gap:100px">
+    <div class="pl-cta pl-ring">
+      <img class="pl-cta__mark" src="/assets/eyebrow/7.webp" alt="" loading="lazy" decoding="async">
+      <h2 class="pl-h-lg">COPY: Closing line. <em>Make it a decision.</em></h2>
+      <p class="pl-lead">COPY: One sentence about what happens when they click.</p>
+      <a class="pl-btn-halo" href="/#cta"><span class="pl-btn pl-btn--primary">Get a demo<span class="pl-btn__arrow">→</span></span></a>
+      <img class="pl-cta__hills" src="/assets/cta-hills-cut2.webp" alt="" loading="lazy" decoding="async">
+    </div>
+
+    <footer class="pl-footer">
+      <div class="pl-footer__brand">
+        <span class="pl-footer__logo"><img src="/assets/eyebrow/7-64.webp" alt="Pretzel Labs" loading="lazy" decoding="async">Pretzel Labs</span>
+        <span class="pl-footer__line">Deal Execution Intelligence · Early access 2026</span>
+        <span>Built for revenue teams that want fewer surprises and better quarters.</span>
+      </div>
+      <div class="pl-footer__cols">
+        <div class="pl-footer__col"><span>Product</span><a href="/#product">Features</a><a href="/#how">How it works</a><a href="/#compare">Before &amp; after</a></div>
+        <div class="pl-footer__col"><span>Solutions</span><a href="/#leaders">Revenue leaders</a><a href="/#managers">Sales managers</a><a href="/#cta">Early access</a></div>
+        <div class="pl-footer__col"><span>Company</span><a href="#">Customers</a><a href="#">Resources</a><a class="pl-footer__mail" href="mailto:hello@pretzel-labs.com">hello@pretzel-labs.com</a></div>
+      </div>
+    </footer>
+  </div>
+</section>
+
+</div>
+<script src="/js/pretzel.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pretzel Labs — component gallery</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/css/pretzel.css">
+<link rel="icon" href="/assets/eyebrow/7-64.webp" type="image/webp">
+<!-- Gallery-only helpers (.ds-*). Never use these on site pages. -->
+<style>
+  .ds-label { font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--pl-muted); }
+  .ds-code  { font: 500 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--pl-muted); }
+  .ds-row   { display: flex; flex-wrap: wrap; gap: 30px; align-items: center; }
+  .ds-col   { display: flex; flex-direction: column; gap: 14px; }
+  .ds-swatch { width: 150px; display: flex; flex-direction: column; gap: 8px; }
+  .ds-swatch i { display: block; height: 72px; border-radius: var(--pl-r-md); box-shadow: var(--pl-ring); }
+  .ds-photo { position: relative; overflow: hidden; border-radius: var(--pl-r-xl); padding: 40px; display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; justify-content: center; }
+  .ds-photo > :not(.pl-media) { position: relative; }
+  .ds-radius { width: 110px; height: 80px; background: var(--pl-surface); box-shadow: var(--pl-ring); display: flex; align-items: flex-end; padding: 10px; }
+</style>
+</head>
+<body>
+<div class="pl-page">
+
+<!-- NAV (live) -->
+<div class="pl-navbar">
+  <nav class="pl-nav" aria-label="Main">
+    <a class="pl-nav__logo" href="/">
+      <img src="/assets/eyebrow/7-64.webp" alt="Pretzel Labs" width="32" height="32" decoding="async"><span class="pl-nav__wordmark">Pretzel Labs</span></a>
+    <div class="pl-nav__links">
+      <a href="#foundations" aria-current="page">Foundations</a>
+      <a href="#components">Components</a>
+      <a href="#sections">Sections</a>
+      <a href="#derived">Derived</a>
+    </div>
+    <button class="pl-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="pl-navmenu"><span></span><span></span><span></span></button>
+    <a class="pl-btn pl-btn--dark pl-btn--sm" href="/">Home page <span class="pl-btn__arrow">→</span></a>
+    <div class="pl-navmenu" id="pl-navmenu">
+      <a href="#foundations">Foundations</a><a href="#components">Components</a><a href="#sections">Sections</a><a href="#derived">Derived</a>
+    </div>
+  </nav>
+</div>
+
+<section class="pl-hero pl-hero--page">
+  <div class="pl-hero__content">
+    <h1 class="pl-h-xl">Component <em>gallery</em></h1>
+    <p class="pl-lead">Every class in css/pretzel.css, rendered. The markup of each block is the markup to copy. Rules and variants: docs/components.md.</p>
+  </div>
+</section>
+
+<!-- ============================================================ FOUNDATIONS -->
+<section class="pl-section" id="foundations">
+  <div class="pl-container pl-stack">
+    <div class="pl-pin-head">
+      <img class="pl-pin" src="/assets/eyebrow/1.webp" alt="" loading="lazy">
+      <h2 class="pl-h-md">Foundations</h2>
+    </div>
+
+    <div class="ds-col">
+      <span class="ds-label">Colour</span>
+      <div class="ds-row">
+        <div class="ds-swatch"><i style="background:var(--pl-ink)"></i><b>Ink</b><span class="ds-code">--pl-ink #1d1d1d</span></div>
+        <div class="ds-swatch"><i style="background:var(--pl-muted)"></i><b>Muted</b><span class="ds-code">--pl-muted #4d585f</span></div>
+        <div class="ds-swatch"><i style="background:var(--pl-accent)"></i><b>Accent</b><span class="ds-code">--pl-accent #f64c26</span></div>
+        <div class="ds-swatch"><i style="background:var(--pl-grad-primary)"></i><b>Primary gradient</b><span class="ds-code">#ff6a45 → #f64c26</span></div>
+        <div class="ds-swatch"><i style="background:var(--pl-surface)"></i><b>Surface</b><span class="ds-code">--pl-surface #edf1f4</span></div>
+        <div class="ds-swatch"><i style="background:var(--pl-sky)"></i><b>Sky</b><span class="ds-code">--pl-sky #cfe3f7</span></div>
+        <div class="ds-swatch"><i style="background:var(--pl-ok)"></i><b>OK</b><span class="ds-code">--pl-ok #10b981</span></div>
+        <div class="ds-swatch"><i style="background:var(--pl-warn)"></i><b>Warn</b><span class="ds-code">--pl-warn #ff8b06</span></div>
+      </div>
+    </div>
+
+    <div class="ds-col">
+      <span class="ds-label">Type</span>
+      <div class="pl-h-xl">Hero title, <em>italic accent</em></div><span class="ds-code">.pl-h-xl — Space Grotesk 600, clamp(52px, 7vw, 100px), −1.4px</span>
+      <div class="pl-h-lg">Large section title</div><span class="ds-code">.pl-h-lg — clamp(40px, 5vw, 64px), 1.05, −1.5px</span>
+      <div class="pl-h-md">Section title, <em>italic phrase</em></div><span class="ds-code">.pl-h-md — clamp(34px, 4vw, 48px), 1.2, −1px</span>
+      <div class="pl-h-sm">Card title</div><span class="ds-code">.pl-h-sm — 28px, 1.2, −0.5px</span>
+      <div class="pl-h-xs">Row label</div><span class="ds-code">.pl-h-xs — 20px, 1.2</span>
+      <p class="pl-lead">Lead paragraph. DM Sans 500, 20px on 26px.</p><span class="ds-code">.pl-lead (add .pl-muted off the hero)</span>
+      <p class="pl-lead-sm">Section lead. 18px, muted.</p><span class="ds-code">.pl-lead-sm</span>
+      <p>Body. DM Sans 500, 16px, 1.3.</p><span class="ds-code">body</span>
+      <p class="pl-caption">Caption. 14px, 1.4, muted, 320px max.</p><span class="ds-code">.pl-caption</span>
+      <span class="pl-label">Label. 13px muted — inside glass panels.</span><span class="ds-code">.pl-label</span>
+    </div>
+
+    <div class="ds-col">
+      <span class="ds-label">Radii</span>
+      <div class="ds-row">
+        <div class="ds-radius" style="border-radius:100px"><span class="ds-code">100 pill</span></div>
+        <div class="ds-radius" style="border-radius:56px"><span class="ds-code">56 nav</span></div>
+        <div class="ds-radius" style="border-radius:30px"><span class="ds-code">30 xl</span></div>
+        <div class="ds-radius" style="border-radius:24px"><span class="ds-code">24 lg</span></div>
+        <div class="ds-radius" style="border-radius:20px"><span class="ds-code">20 md</span></div>
+        <div class="ds-radius" style="border-radius:14px"><span class="ds-code">14 sm</span></div>
+      </div>
+    </div>
+
+    <div class="ds-col">
+      <span class="ds-label">Ring (hover me) · glass on photo</span>
+      <div class="ds-photo">
+        <div class="pl-media" style="background-image:url(/assets/feature-3.jpg)"></div>
+        <div class="pl-reason pl-ring" style="min-height:160px;width:260px"><b>.pl-ring</b><span class="pl-muted">4px rgba(221,229,237,.7), orange on hover</span></div>
+        <div class="pl-glass" style="width:260px"><b>.pl-glass</b><span class="pl-label">white 55%, blur 14px, 1px white border</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ COMPONENTS -->
+<section class="pl-section" id="components">
+  <div class="pl-container pl-stack">
+    <div class="pl-pin-head">
+      <img class="pl-pin" src="/assets/eyebrow/2.webp" alt="" loading="lazy">
+      <h2 class="pl-h-md">Components</h2>
+    </div>
+
+    <div class="ds-col">
+      <span class="ds-label">Buttons — three kinds, pairs in halos</span>
+      <div class="ds-photo" style="padding:60px 40px">
+        <div class="pl-media" style="background-image:url(/assets/hero-clouds-1250.webp)"></div>
+        <div class="pl-btn-row">
+          <a class="pl-btn-halo" href="#"><span class="pl-btn pl-btn--primary">Get a demo<span class="pl-btn__arrow">→</span></span></a>
+          <a class="pl-btn-halo" href="#"><span class="pl-btn pl-btn--ghost">Watch a tour</span></a>
+        </div>
+      </div>
+      <div class="ds-row">
+        <a class="pl-btn-halo" href="#"><span class="pl-btn pl-btn--dark">View all features<span class="pl-btn__arrow">→</span></span></a>
+        <a class="pl-btn pl-btn--dark pl-btn--sm" href="#">Request access <span class="pl-btn__arrow">→</span></a>
+        <a class="pl-link-cta" href="#">Learn more →</a>
+        <a class="pl-link-cta pl-link-cta--lg" href="#">Learn more →</a>
+      </div>
+      <span class="ds-code">.pl-btn--primary · .pl-btn--ghost · .pl-btn--dark · .pl-btn--dark.pl-btn--sm (nav only) · .pl-link-cta · .pl-link-cta--lg</span>
+    </div>
+
+    <div class="ds-col">
+      <span class="ds-label">Ticked claims</span>
+      <div class="pl-checks" style="justify-content:flex-start">
+        <span><span class="pl-tick"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true" focusable="false"><path d="M1.6 5.1 3.9 7.4 8.4 2.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>No rep logging</span>
+        <span><span class="pl-tick"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true" focusable="false"><path d="M1.6 5.1 3.9 7.4 8.4 2.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Second claim</span>
+      </div>
+    </div>
+
+    <div class="ds-col">
+      <span class="ds-label">Glass panel contents</span>
+      <div class="ds-photo">
+        <div class="pl-media" style="background-image:url(/assets/feature-2.jpg)"></div>
+        <div class="pl-glass pl-glass--live is-live" style="width:300px">
+          <div class="pl-kv"><span>Deal health</span><span class="pl-tag">At risk</span></div>
+          <div class="pl-stat">72<small>/100</small></div>
+          <div class="pl-rows">
+            <div class="pl-kv"><span>MEDDICC</span><b>3 / 6</b></div>
+            <div class="pl-bar"><i style="width:50%"></i></div>
+          </div>
+        </div>
+        <div class="pl-glass pl-glass--lg">
+          <div class="pl-kv"><span>Forecast · Q2</span><span>Week 7 / 13</span></div>
+          <div class="pl-stat">$1.8M<small> commit</small></div>
+          <div class="pl-rows" style="--gap:12px">
+            <div class="pl-kv pl-kv--14"><span>Best case</span><b>$2.4M</b></div>
+            <div class="pl-bar pl-bar--6"><i class="is-ink" style="width:100%"></i></div>
+            <div class="pl-kv pl-kv--14"><span>Commit</span><b>$1.8M</b></div>
+            <div class="pl-bar pl-bar--6"><i class="is-ok" style="width:75%"></i></div>
+            <div class="pl-kv pl-kv--14"><span>At risk</span><b>$340K</b></div>
+            <div class="pl-bar pl-bar--6"><i style="width:14%"></i></div>
+          </div>
+        </div>
+        <div class="pl-glass pl-glass--lg">
+          <div class="pl-kv"><span>Monday</span><span>3 need you</span></div>
+          <div class="pl-stat">3<small> / 40</small></div>
+          <div class="pl-dotlist">
+            <div><span class="pl-dot"></span><span>Madeleine Corp</span><b>$180K</b></div>
+            <div><span class="pl-dot is-warn"></span><span>Tartelette Systems</span><b>$220K</b></div>
+            <div><span class="pl-dot is-ink"></span><span>Marcus T. · coaching</span><b></b></div>
+          </div>
+        </div>
+      </div>
+      <span class="ds-code">.pl-glass(--lg, --live, --spread) · .pl-kv(--14) · .pl-tag · .pl-label · .pl-stat(--md) · .pl-rows · .pl-bar(--6) &gt; i(.is-ink|.is-ok) · .pl-dotlist · .pl-dot(.is-warn|.is-ink|.is-ok)</span>
+    </div>
+
+    <div class="ds-col">
+      <span class="ds-label">Pills</span>
+      <div class="ds-photo" style="justify-content:flex-start;padding:30px">
+        <div class="pl-media" style="background-image:url(/assets/feature-3.jpg)"></div>
+        <div class="pl-stepper__pills">
+          <button class="pl-pill" type="button" aria-selected="true">Selected</button>
+          <button class="pl-pill" type="button" aria-selected="false">Idle</button>
+          <button class="pl-pill" type="button" aria-selected="false">Idle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SECTIONS -->
+<section class="pl-section" id="sections">
+  <div class="pl-container pl-stack">
+    <div class="pl-pin-head" style="--gap:12px">
+      <img class="pl-pin" src="/assets/eyebrow/3.webp" alt="" loading="lazy">
+      <h2 class="pl-h-md">Section building blocks</h2>
+      <p class="pl-lead-sm" style="max-width:520px">The home page is the full reference for these (index.html). Shown here in isolation.</p>
+    </div>
+
+    <span class="ds-label">Split head (.pl-grid.pl-split-head)</span>
+    <div class="pl-grid pl-split-head">
+      <div class="pl-split-head__main">
+        <img class="pl-eyebrow-art" src="/assets/eyebrow/1.webp" alt="" loading="lazy">
+        <h2 class="pl-h-lg">Large title on the left</h2>
+      </div>
+      <div class="pl-split-head__aside">
+        <p class="pl-lead pl-muted" style="max-width:480px">Lead on the right, bottoms aligned, with the dark button under it.</p>
+        <a class="pl-btn-halo" href="#"><span class="pl-btn pl-btn--dark">Dark button<span class="pl-btn__arrow">→</span></span></a>
+      </div>
+    </div>
+
+    <span class="ds-label">Bento (.pl-bento) — 3 columns, rows 400 / 370</span>
+    <div class="pl-bento">
+      <div class="pl-tile pl-tile--spread pl-ring">
+        <div class="pl-media" style="background-image:url(/assets/feature-timeline.jpg)"></div>
+        <div class="pl-scrim pl-scrim--frame"></div>
+        <h3 class="pl-h-sm">Photo tile</h3>
+        <div class="pl-tile__foot"><p class="pl-caption">.pl-tile.pl-tile--spread + .pl-scrim--frame</p><a class="pl-link-cta" href="#">Learn more →</a></div>
+      </div>
+      <div class="pl-tile pl-tile--sky pl-ring pl-zoom" style="--gap:16px">
+        <div class="pl-media" style="background-image:url(/assets/feature-2.jpg)"></div>
+        <h3 class="pl-h-sm">Tile with glass</h3>
+        <div class="pl-glass pl-glass--live pl-glass--spread pl-fill">
+          <div class="pl-kv"><span>Label</span><span class="pl-tag">Tag</span></div>
+          <div class="pl-stat">72<small>/100</small></div>
+        </div>
+        <div class="pl-tile__foot"><p class="pl-caption">.pl-tile--sky.pl-zoom, hover me</p></div>
+      </div>
+      <div class="pl-tile pl-tile--roomy pl-tile--spread pl-bento__tall pl-ring">
+        <video class="pl-media" poster="/assets/feature-1.webp" preload="none" muted playsinline data-src="/assets/feature-1.mp4"></video>
+        <div class="pl-scrim pl-scrim--strong"></div>
+        <h3 class="pl-h-sm">Tall video tile</h3>
+        <div class="pl-fill"></div>
+        <div class="pl-tile__foot"><p class="pl-caption">.pl-bento__tall + video.pl-media[data-src]</p></div>
+      </div>
+      <div class="pl-tile pl-tile--center pl-bento__wide pl-ring pl-zoom">
+        <div class="pl-media" style="background-image:url(/assets/feature-3.jpg)"></div>
+        <div class="pl-scrim pl-scrim--top"></div>
+        <h3 class="pl-h-sm">Wide tile</h3>
+        <p class="pl-caption">.pl-bento__wide.pl-tile--center + .pl-scrim--top</p>
+        <div class="pl-tilt-wrap">
+          <div class="pl-glass pl-tilt" style="left:12%;top:30px;width:34%;transform:rotate(-8deg)">
+            <span class="pl-label">Tilted glass</span>
+            <div class="pl-rows" style="--gap:10px"><div class="pl-kv"><span>Pipeline</span><b>$3.1M</b></div><div class="pl-bar"><i class="is-ink" style="width:100%"></i></div></div>
+          </div>
+          <div class="pl-glass pl-tilt" style="left:52%;top:20px;width:34%;transform:rotate(6deg)">
+            <span class="pl-label">Flat at ≤1024px</span>
+            <div class="pl-rows" style="--gap:10px"><div class="pl-kv"><span>Brioche Cap.</span><b>$31K</b></div><div class="pl-kv"><span>Strudel Corp</span><b>$18K</b></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <span class="ds-label">Stepper (.pl-stepper[data-pl-stepper])</span>
+    <div class="pl-grid pl-stepper pl-ring pl-zoom" data-pl-stepper="0">
+      <div class="pl-media" style="background-image:url(/assets/feature-3.jpg)"></div>
+      <div class="pl-stepper__main">
+        <div class="pl-stepper__pills" role="tablist" aria-label="Demo steps">
+          <button class="pl-pill" type="button" role="tab" aria-selected="true" data-pl-step data-num="01" data-title="First step" data-text="Each pill carries its step in data-num, data-title, data-text, data-tag, data-big, data-progress." data-tag="Tag one" data-big="Big value" data-progress="33%">Step 01</button>
+          <button class="pl-pill" type="button" role="tab" aria-selected="false" data-pl-step data-num="02" data-title="Second step" data-text="js/pretzel.js swaps the fields. data-pl-stepper=&quot;4000&quot; autoplays every 4s; &quot;0&quot; disables it." data-tag="Tag two" data-big="Another value" data-progress="66%">Step 02</button>
+          <button class="pl-pill" type="button" role="tab" aria-selected="false" data-pl-step data-num="03" data-title="Third step" data-text="Paint step 1 in the HTML so the card is complete before JS runs." data-tag="Done" data-big="Finished" data-progress="100%">Step 03</button>
+        </div>
+        <div class="pl-stepper__copy">
+          <span class="pl-stepper__num" data-pl-field="num">01</span>
+          <h3 class="pl-h-sm" data-pl-field="title">First step</h3>
+          <p data-pl-field="text">Each pill carries its step in data-num, data-title, data-text, data-tag, data-big, data-progress.</p>
+        </div>
+      </div>
+      <div class="pl-stepper__panel">
+        <div class="pl-glass pl-glass--live">
+          <div class="pl-kv"><span>Strudel Corp</span><span class="pl-tag" data-pl-field="tag">Tag one</span></div>
+          <div class="pl-stat pl-stat--md" data-pl-field="big">Big value</div>
+          <div class="pl-bar pl-bar--6"><i data-pl-progress style="width:33%"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <span class="ds-label">Compare table (.pl-compare)</span>
+    <div class="pl-compare">
+      <div class="pl-compare__head"><span>Situation</span><span>Without Pretzel</span><span>With Pretzel</span></div>
+      <div class="pl-compare__row pl-ring"><div>Row label</div><div>The old way, in muted text.</div><div>The new way, on a white inset cell.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ DERIVED -->
+<section class="pl-section" id="derived">
+  <div class="pl-container pl-stack">
+    <div class="pl-pin-head" style="--gap:12px">
+      <img class="pl-pin" src="/assets/eyebrow/6.webp" alt="" loading="lazy">
+      <h2 class="pl-h-md">Derived and composed</h2>
+      <p class="pl-lead-sm" style="max-width:520px">Not on the home page. Built only from existing tokens and components, for pages the home page doesn't have.</p>
+    </div>
+
+    <div class="ds-col">
+      <span class="ds-label">Chips (.pl-chip)</span>
+      <div class="ds-row">
+        <span class="pl-chip">Default</span>
+        <span class="pl-chip pl-chip--accent">Coming soon</span>
+        <span class="pl-chip pl-chip--ok">Live</span>
+        <span class="pl-chip pl-chip--warn">Beta</span>
+      </div>
+    </div>
+
+    <div class="ds-col">
+      <span class="ds-label">Composition: pricing cards — example layout only; publishing pricing is undecided (product brief §12)</span>
+      <div class="pl-grid" style="--min:260px">
+        <div class="pl-reason pl-ring">
+          <div class="pl-reason__body" style="gap:14px">
+            <span class="pl-chip">Basic</span>
+            <div class="pl-stat">$99<small> / month</small></div>
+            <p>Up to 20 open deals. Unlimited users.</p>
+          </div>
+          <a class="pl-btn-halo" href="#" style="align-self:flex-start"><span class="pl-btn pl-btn--dark">Choose Basic<span class="pl-btn__arrow">→</span></span></a>
+        </div>
+        <div class="pl-reason pl-ring">
+          <div class="pl-reason__body" style="gap:14px">
+            <span class="pl-chip pl-chip--accent">Extended</span>
+            <div class="pl-stat">$169<small> / month</small></div>
+            <p>Up to 40 open deals. Adds Team Performance.</p>
+          </div>
+          <a class="pl-btn-halo" href="#" style="align-self:flex-start"><span class="pl-btn pl-btn--primary">Choose Extended<span class="pl-btn__arrow">→</span></span></a>
+        </div>
+        <div class="pl-reason pl-ring">
+          <div class="pl-reason__body" style="gap:14px">
+            <span class="pl-chip">Pro</span>
+            <div class="pl-stat">$249<small> / month</small></div>
+            <p>Up to 60 open deals. Adds Forecast.</p>
+          </div>
+          <a class="pl-btn-halo" href="#" style="align-self:flex-start"><span class="pl-btn pl-btn--dark">Choose Pro<span class="pl-btn__arrow">→</span></span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-col">
+      <span class="ds-label">Composition: integrations — names in text, no third-party logos</span>
+      <div class="pl-grid" style="--min:220px;--gap:20px">
+        <div class="pl-card pl-card--row pl-ring"><span class="pl-h-xs">Salesforce</span><span class="pl-chip pl-chip--ok">Live</span></div>
+        <div class="pl-card pl-card--row pl-ring"><span class="pl-h-xs">Gmail</span><span class="pl-chip pl-chip--ok">Live</span></div>
+        <div class="pl-card pl-card--row pl-ring"><span class="pl-h-xs">Gong</span><span class="pl-chip pl-chip--ok">Live</span></div>
+        <div class="pl-card pl-card--row pl-ring"><span class="pl-h-xs">HubSpot</span><span class="pl-chip pl-chip--accent">Coming soon</span></div>
+      </div>
+    </div>
+
+    <div class="ds-col">
+      <span class="ds-label">Prose (.pl-prose) — see _legal.html</span>
+      <article class="pl-prose" style="margin:0">
+        <h2>Prose heading</h2>
+        <p>Long-form body text at 16px on 1.6, 720px measure, with an <a href="#">inline link</a>. The home page's 1.3 line height is for short marketing lines only.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="pl-section pl-section--last">
+  <div class="pl-container">
+    <div class="pl-cta pl-ring" style="min-height:0;padding-bottom:0">
+      <img class="pl-cta__mark" src="/assets/eyebrow/7.webp" alt="" loading="lazy">
+      <h2 class="pl-h-lg">CTA card. <em>One orange button.</em></h2>
+      <p class="pl-lead">.pl-cta — grey card, mark, title, lead, primary button, hills in flow at the bottom.</p>
+      <a class="pl-btn-halo" href="#"><span class="pl-btn pl-btn--primary">Get a demo<span class="pl-btn__arrow">→</span></span></a>
+      <img class="pl-cta__hills" src="/assets/cta-hills-cut2.webp" alt="" loading="lazy">
+    </div>
+  </div>
+</section>
+
+</div>
+<script src="/js/pretzel.js" defer></script>
+</body>
+</html>
